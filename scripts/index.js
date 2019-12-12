@@ -169,6 +169,8 @@ function getPetDescription(obj) {
     return obj.animals[0].description;
 }
 
+// need function for link to adoption site
+
 // create functions to display extracted data
 
 function renderPetType(type, container) {

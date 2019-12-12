@@ -3,10 +3,29 @@
 }
 
 body {
-    background-image: url(/images/abstract-background-3335898.jpg);
+    /* background-image: url(/images/abstract-background-3335898.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(187, 166, 166);
     background-blend-mode: screen;
 
 }
+
+footer {
+    display: block;
+    background-color: green;
+}
+
+img {
+    width: 300px;
+    margin-top: 20px;
+}
+
+.card-deck {
+    padding: 50px 100px 50px 100px;
+}
+
+
+
+
+

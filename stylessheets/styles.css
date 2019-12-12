@@ -1,0 +1,12 @@
+* {
+    box-sizing: border-box;    
+}
+
+body {
+    background-image: url(/images/abstract-background-3335898.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(187, 166, 166);
+    background-blend-mode: screen;
+
+}

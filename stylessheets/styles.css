@@ -4,6 +4,7 @@
 
 body {
     /* background-image: url(/images/abstract-background-3335898.jpg); */
+    font-size: 14px;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(187, 166, 166);
@@ -23,6 +24,16 @@ img {
 
 .card-deck {
     padding: 50px 100px 50px 100px;
+    
+}
+
+.user-input {
+    margin-left: 250px;
+    margin-top: 50px;
+}
+
+.user-box {
+    background-color: gold;
 }
 
 

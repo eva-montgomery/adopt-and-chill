@@ -32,7 +32,7 @@ function createRaceDOMs(){
     for (let race of raceArr) {
         let card = document.createElement('div');
         card.className = ".js-card";
-        
+        card.sumthin = race;
         let img = document.createElement('img');
         img.src = `images/${race}-dog.png`;
         img.alt = `${race} dog`;
@@ -45,6 +45,11 @@ function createRaceDOMs(){
         card.addEventListener('click', raceClick);
         cardDeck.appendChild(card);
     }
+}
+
+function raceClick(event){
+    console.log(event);
+    console.log(event.target.sumthin);
 }
 
 function createStrainDOMs(strainsObjArr){

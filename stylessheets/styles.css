@@ -62,7 +62,32 @@ img {
     background-color: rgb(220, 179, 89);
 }
 
+.search-input {
+    border-radius: 25px;
+}
 
+.form-container {
+    justify-content: center;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: burlywood;
+    /* border: 1px solid red */
+}
+.search-btn{
+  border-radius: 25px;
+  border: 2px solid rgba(33,224,163,1);
+  background: rgba(33,224,163,1);
+  justify-content: center;
+  color: blueviolet;
+  
+}
+.search-btn:hover {
+    color: rgba(255,255,255,1);
+    background: rgb(30, 205, 151);
+  }
 
 
 

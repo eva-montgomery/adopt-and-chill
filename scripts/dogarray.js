@@ -2,10 +2,10 @@
 
 
 const dogChars = {
-    "Affenpinscher" : ["giggly", "happy"],
+    'Affenpinscher' : ['giggly', 'happy'],
     "Afghan Hound" : [],
-    Airedale Terrier : [],
-    Akbash
+    'Airedale Terrier' : [],
+    'Akbash' : [],
     Akita
     Alaskan Malamute
     American Bulldog

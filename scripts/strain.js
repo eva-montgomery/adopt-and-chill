@@ -32,9 +32,9 @@ function createRaceDOMs(){
     for (let race of raceArr) {
         let card = document.createElement('div');
         card.className = ".js-card";
-        card.sumthin = race;
+        card.race = race;
         let img = document.createElement('img');
-        img.src = `images/${race}-dog.png`;
+        img.src = `images/${race.toLowerCase()}-dog.png`;
         img.alt = `${race} dog`;
         
         let h5 = document.createElement('h5');
@@ -49,7 +49,13 @@ function createRaceDOMs(){
 
 function raceClick(event){
     console.log(event);
-    console.log(event.target.sumthin);
+    console.log(event.currentTarget.race);
+    fetch(strainRaceURLGen(event.currentTarget.race))
+        .then(x => x.json())
+        .then(lookInside)
+        .then(selectRandomStrain)
+        .then(lookInside)
+        .then(createSingleStrainDOM)
 }
 
 function createStrainDOMs(strainsObjArr){
@@ -63,13 +69,14 @@ function createStrainDOMs(strainsObjArr){
     // onClick function should set both the strainName and strainID global vars
 }
 
-function createRandomStrainDOM(strainArr){
+function selectRandomStrain(strainArr){
     let rando = Math.floor(Math.random() * strainArr.length);
     return strainArr[rando];
 }
 
 
 function createSingleStrainDOM(strainObj){
+    let card = document.createElement('div');
 }
 
 function getStrain(strainID){

@@ -80,8 +80,6 @@ function strainToBreedConverter(strainObj){
     return "Pomeranian";
 }
 
-
-
 // getAllOfRace('Sativa');
 // getStrain(strainID);
 

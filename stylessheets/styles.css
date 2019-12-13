@@ -33,7 +33,7 @@ img {
 .card-deck {
     display: flex;
     flex-direction: column; 
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: nowrap;
     width: 100%;
     padding: 50px 100px 50px 100px;

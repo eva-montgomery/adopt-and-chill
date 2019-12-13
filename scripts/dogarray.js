@@ -18,7 +18,7 @@ const dogChars = {
     Anatolian Shepherd
     Appenzell Mountain Dog
     Aussiedoodle
-    Australian Cattle Dog / Blue Heeler
+    `Australian Cattle Dog / Blue Heeler`
     Australian Kelpie
     Australian Shepherd
     Australian Terrier
@@ -75,7 +75,7 @@ const dogChars = {
     Chiweenie
     Chocolate Labrador Retriever
     Chow Chow
-    Cirneco dell'Etna
+    `Cirneco dell'Etna`
     Clumber Spaniel
     Cockapoo
     Cocker Spaniel

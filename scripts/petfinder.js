@@ -169,6 +169,8 @@ function getPetDescription(obj) {
     return obj.animals[0].description;
 }
 
+// need function for link to adoption site
+
 // create functions to display extracted data
 
 function renderPetType(type, container) {
@@ -243,3 +245,39 @@ function renderPet(obj) {
 // return renderPet(obj);
 
 // function findYourPet(findPet) {}
+
+// function for hybridWeed dropdown
+
+// function hybridWeed() {
+// const hybrids = ['France', 'UK', 'Spain','Belgium','Holland'],
+// select = document.getElementById( 'hybrids' );
+
+// for( hybrid in hybrids ) {
+// select.add( new Option( hybrids[hybrid] ) );
+
+// };
+// }
+
+const cityForm = document.querySelector('');
+
+const API = ``;
+
+function citySearchURL(cityName) {
+    //return `${API}forecast?q=${cityName}&APPID=${weatherAPIKey}`    
+}
+
+// function getCity(cityName) {    
+//     fetch(citySearchURL(cityName))
+//         .then(r => r.json())
+//         .then((obj) => {
+//             console.log(obj);
+//         });
+// }
+
+cityForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Don't send the form!!!
+    const cityName = e.target.city.value;
+    console.log(cityName);
+    getCity(cityName)
+});
+

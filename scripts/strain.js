@@ -20,10 +20,19 @@ function getAllOfRace(race){
         .then(r => createStrainDOMs)
 }
 
-function createStrainDOMs(strainsObj){
+function createStrainDOMs(strainsObjArr){
+    console.log(strainsObjArr);
+    for (let strain of strainsObjArr){
+        createSingleStrainDOM(strain);
+    }
+    
     // strainsArr = Object.keys(strainsObj);
     //iterates thru all the strains of a race and creates a clickable DOM DIV for each, style TBD.
     // onClick function should set both the strainName and strainID global vars
+}
+
+function createSingleStrainDOM(strainObj){
+    
 }
 
 function getStrain(strainID){

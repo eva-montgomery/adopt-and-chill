@@ -1,5 +1,8 @@
 let strainName = '';
 let strainID = 1758;
+let strainDescription;
+let strainEffects;
+let strainFlavors;
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
@@ -7,6 +10,7 @@ function strainRaceURLGen(race){
 function strainURLGen(strainID){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/data/effects/${strainID}`;
 }
+
 
 function lookInside(o){
     console.log(o);
@@ -17,7 +21,30 @@ function getAllOfRace(race){
     return fetch(strainRaceURLGen(race))
         .then(p => p.json())
         .then(lookInside)
-        .then(r => createStrainDOMs)
+        .then(createRandomStrainDOM)
+        // .then(createStrainDOMs)
+}
+
+function createRaceDOMs(){
+    
+    let cardDeck = document.querySelector(".card-deck");
+    let raceArr = ["Indica", "Sativa", "Hybrid"];
+    for (let race of raceArr) {
+        let card = document.createElement('div');
+        card.className = ".js-card";
+        
+        let img = document.createElement('img');
+        img.src = `images/${race}-dog.png`;
+        img.alt = `${race} dog`;
+        
+        let h5 = document.createElement('h5');
+        h5.textContent = race;
+        
+        card.appendChild(img);
+        card.appendChild(h5);
+        card.addEventListener('click', raceClick);
+        cardDeck.appendChild(card);
+    }
 }
 
 function createStrainDOMs(strainsObjArr){
@@ -31,8 +58,13 @@ function createStrainDOMs(strainsObjArr){
     // onClick function should set both the strainName and strainID global vars
 }
 
+function createRandomStrainDOM(strainArr){
+    let rando = Math.floor(Math.random() * strainArr.length);
+    return strainArr[rando];
+}
+
+
 function createSingleStrainDOM(strainObj){
-    
 }
 
 function getStrain(strainID){
@@ -42,12 +74,17 @@ function getStrain(strainID){
         .then(strainToBreedConverter)
 }
 
-getAllOfRace('Sativa');
-
-getStrain(strainID);
-
 function strainToBreedConverter(strainObj){
     // some magic goes here.
     console.log(strainObj);
     return "Pomeranian";
 }
+
+
+
+// getAllOfRace('Sativa');
+// getStrain(strainID);
+
+createRaceDOMs();
+
+

@@ -27,7 +27,7 @@ function getAllOfRace(race){
 
 function createRaceDOMs(){
     
-    let cardDeck = document.querySelector(".card-deck");
+    let cardDeck = document.querySelector(".card-z");
     let raceArr = ["Indica", "Sativa", "Hybrid"];
     for (let race of raceArr) {
         let card = document.createElement('div');
@@ -74,28 +74,16 @@ function selectRandomStrain(strainArr){
     return strainArr[rando];
 }
 
-//<div class="card">
-//<h5 class="card-title">Your new Strain!</h5>
-//<img src="../adopt-and-chill/images/noun_Marijuana_2183514.png" class="card-img-top" alt="...">
-//<div class="card-body">
-//    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, voluptas iure dolorum facere quibusdam architecto. Quod at debitis 
-//        ipsam exercitationem pariatur, alias perspiciatis aliquam veniam laboriosam deleniti in earum adipisci!</p>
-//    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, voluptas iure dolorum facere quibusdam architecto. Quod at debitis 
-//        ipsam exercitationem pariatur, alias perspiciatis aliquam veniam laboriosam deleniti in earum adipisci!</p>
-//    </div>
-//</div>
-
 async function getStrainInfo(strainID){
     let URLArr = [strainURLGen(strainID,"desc"),strainURLGen(strainID,"effects"),strainURLGen(strainID,"flavors")]
     let values = await Promise.all(URLArr.map(url => fetch(url).then(r => r.json())));
     return values;
 }
 
-
 function createSingleStrainDOM(strainObj){
     getStrainInfo(strainObj.id)
         .then(infoArr => {
-            let cardDeck = document.querySelector(".card-deck");
+            let cardDeck = document.querySelector(".card-z");
             let card = document.createElement('div');
             card.className = ".js-card-title";
             

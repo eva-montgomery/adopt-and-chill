@@ -7,8 +7,8 @@ function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
 
-function strainURLGen(strainID){
-    return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/data/effects/${strainID}`;
+function strainURLGen(strainID, searchy){
+    return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/data/${searchy}/${strainID}`;
 }
 
 
@@ -74,10 +74,100 @@ function selectRandomStrain(strainArr){
     return strainArr[rando];
 }
 
+//<div class="card">
+//<h5 class="card-title">Your new Strain!</h5>
+//<img src="../adopt-and-chill/images/noun_Marijuana_2183514.png" class="card-img-top" alt="...">
+//<div class="card-body">
+//    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, voluptas iure dolorum facere quibusdam architecto. Quod at debitis 
+//        ipsam exercitationem pariatur, alias perspiciatis aliquam veniam laboriosam deleniti in earum adipisci!</p>
+//    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, voluptas iure dolorum facere quibusdam architecto. Quod at debitis 
+//        ipsam exercitationem pariatur, alias perspiciatis aliquam veniam laboriosam deleniti in earum adipisci!</p>
+//    </div>
+//</div>
+
+async function getStrainInfo(strainID){
+    let URLArr = [strainURLGen(strainID,"desc"),strainURLGen(strainID,"effects"),strainURLGen(strainID,"flavors")]
+    let values = await Promise.all(URLArr.map(url => fetch(url).then(r => r.json())));
+    return values;
+}
+
 
 function createSingleStrainDOM(strainObj){
-    let card = document.createElement('div');
+    getStrainInfo(strainObj.id)
+        .then(infoArr => {
+            let cardDeck = document.querySelector(".card-deck");
+            let card = document.createElement('div');
+            card.className = ".js-card-title";
+            
+            let h5 = document.createElement("h5");
+            h5.className = ".js-card-title";
+            h5.textContent = "Your new Strain!";
+
+            let img = document.createElement("img");
+            img.src = "images/noun_Marijuana_2183514.png";
+            img.className = ".js-card-img-top";
+            img.alt = "weed leaf";
+
+            let p1 = document.createElement('p');
+            p1.className = ".js-card-text";
+            p1.textContent = strainObj.name;
+            console.log(p1);
+
+            let p2 = document.createElement('p');
+            p2.className = ".js-card-text";
+            p2.textContent = infoArr[0].desc;
+            console.log(p2);
+            console.log(infoArr[0]);
+
+            let p3 = document.createElement('p');
+            p3.className = ".js-card-text";
+            p3.textContent = effectText(infoArr[1]);
+            console.log(p3);
+            console.log(infoArr[1]);
+
+            let p4 = document.createElement('p');
+            p4.className = ".js-card-text";
+            p4.textContent = flavorText(infoArr[2]);
+            console.log(p4);
+            console.log(infoArr[2]);
+
+            cardDeck.textContent = "";
+            card.appendChild(h5);
+            card.appendChild(img);
+            card.appendChild(p1);
+            card.appendChild(p2);
+            card.appendChild(p3);
+            card.appendChild(p4);
+            cardDeck.appendChild(card);
+        })
 }
+
+function effectText(effectObj){
+    let posiEffects = "";
+    let negEffects = "";
+    let medEffects ="";
+    for (let effect of effectObj.positive){
+        posiEffects = posiEffects + effect + " ";
+    }
+    for (let effect of effectObj.negative){
+        negEffects = negEffects + effect + " ";
+    }
+    for (let effect of effectObj.medical){
+        medEffects = medEffects + effect + " ";
+    }
+    let effectString = `effects :\n Positive : \n ${posiEffects} \n Negative : \n ${negEffects} \n Medical :\n ${medEffects}`;
+    return effectString;
+}
+
+function flavorText(flavorObj){
+    flavors = "";
+    for (let flavor of flavorObj){
+        flavors = flavors + flavor + " ";
+    }
+    let flavorString = `Flavor notes : ${flavors}`;
+    return flavorString;
+}
+
 
 function getStrain(strainID){
     fetch(strainURLGen(strainID))
@@ -97,4 +187,4 @@ function strainToBreedConverter(strainObj){
 
 createRaceDOMs();
 
-
+// console.log(getStrainInfo(255));

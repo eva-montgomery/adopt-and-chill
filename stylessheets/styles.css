@@ -30,9 +30,9 @@ footer {
 
 .logo {
     /* display: flex; */
-    flex-direction: row;
-    width: 100px;
-    margin-left: 20px;
+    /* flex-direction: row; */
+    width: 75px;
+    margin-left: 0px;
     /* margin-right: 200px; */
 }
 
@@ -68,27 +68,28 @@ footer {
     /* padding: 50px 50px 50px 50px; */
 }
 
-.card-title {
+.card-title, js-card-title {
     display: inline-block;
 }
+
 
 /* parent */
 .navbar-expand {
     display: flex;
-    text-align: center;
+    /* text-align: center; */
     background-color:rgb(9, 52, 33);
 }
 
 /* child */
 .navbar-brand {
     font-family: 'Yatra One', cursive;
-    display: inline-block !important;
     margin: 0 auto;
     margin-top: 20px;
     color: rgb(251, 239, 91);
     font-size: 24px;
-
-}
+    /* display: inline-block !important;
+   
+} 
 
 .user-input {
     /* padding: 50px 100px 50px 100px; */
@@ -141,7 +142,21 @@ a:hover {
     /* background-color: yellow; */
   }
 
+@media screen and (min-width: 769px) {
+    .card-z {
+        display: flex;
+        flex-direction: row;
+        width: 800px;
+    }
+}
 
 
+@media screen and (min-width: 1200px) {
+    .card-z {
+        display: flex;
+        flex-direction: row;
+        width: 900px;
+    }
+}
 
 

@@ -15,6 +15,35 @@ function randomDogURLGenerator(dogBreed){
     return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100&status=adoptable`;
 }
 
+function formBuilder(){
+    let thingy = document.querySelector(".zipcode-button");
+
+    let form = document.createElement("form");
+    form.action="";
+    form.class="js-form-container";
+
+    let input1 = document.createElement("input");
+    input1.className = "js-search-input";
+    input1.type = "text";
+    //input1.name = "search";
+    input1.placeholder = "zip code plz";
+
+    let input2 = document.createElement("input");
+    input2.localName = "js-search-btn";
+    input2.type = "submit";
+
+    let reset = document.createElement("reset");
+    reset.className = "js-search-btn";
+    reset.type = "reset";
+
+    form.appendChild(input1);
+    form.appendChild(input2);
+    form.addEventListener("submit", e => LOCATION = e.target.elements[0].value);
+
+    thingy.appendChild(form);
+    thingy.appendChild(reset);
+}
+
 function lookInside(o){
     console.log(o);
     return o;
@@ -227,6 +256,7 @@ function main(){
     raceDomArr.map(appendCardToDeck);
 }
 getToken();
+formBuilder();
 
 const raceDomArr = createRaceDOMs();
 

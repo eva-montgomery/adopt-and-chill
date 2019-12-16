@@ -28,7 +28,7 @@ footer {
 }
 
 
-.card-img-top, js-card-img-top {
+.card-img-top, .js-card-img-top {
     /* display: flex; */
     display: inline-block;
     width: 250px;
@@ -48,7 +48,7 @@ footer {
     
 }
 
-.card, js-card {
+.card, .js-card {
     /* centers as a child of card-z */
     display: inline-block !important;
     width: 300px;
@@ -60,7 +60,7 @@ footer {
     /* padding: 50px 50px 50px 50px; */
 }
 
-.card-title, js-card-title {
+.card-title, .js-card-title {
     display: inline-block;
 }
 

@@ -3,7 +3,8 @@ let STRAINID;
 let STRAINDESCRIPTION;
 let STRAINEFFECTS;
 let STRAINFLAVORS;
-let LOCATION = `Atlanta`;
+let LOCATION = `30307`;
+let STRAINDOGDOMARR = [];
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
@@ -30,9 +31,10 @@ function createRaceDOMs(){
     let raceArr = ["Indica", "Sativa", "Hybrid"];
     for (let race of raceArr) {
         let card = document.createElement('div');
-        card.className = ".js-card";
+        card.className = "js-card";
         card.race = race;
         let img = document.createElement('img');
+        img.className = "js-card-img-top";
         img.src = `images/${race.toLowerCase()}-dog.png`;
         img.alt = `${race} dog`;
         
@@ -50,8 +52,8 @@ function raceClick(event){
     // to add begginer, intermediate, and expert modes, CHANGE THIS FUNCTION!!!!
     // 3 if statements for each different difficulty.
 
-    console.log(event);
-    console.log(event.currentTarget.race);
+    // console.log(event);
+    // console.log(event.currentTarget.race);
     fetch(strainRaceURLGen(event.currentTarget.race))
         .then(x => x.json())
         //.then(lookInside)
@@ -102,39 +104,39 @@ function createSingleStrainDOM(strainObj){
         .then(infoArr => {
             let cardDeck = document.querySelector(".card-z");
             let card = document.createElement('div');
-            card.className = ".js-card-title";
+            card.className = "js-card-title";
             
             let h5 = document.createElement("h5");
-            h5.className = ".js-card-title";
+            h5.className = "js-card-title";
             h5.textContent = "Your new Strain!";
 
             let img = document.createElement("img");
             img.src = "images/noun_Marijuana_2183514.png";
-            img.className = ".js-card-img-top";
+            img.className = "js-card-img-top";
             img.alt = "weed leaf";
 
             let p1 = document.createElement('p');
-            p1.className = ".js-card-text";
+            p1.className = "js-card-text";
             STRAINNAME = strainObj.name;
             p1.textContent = STRAINNAME;
             console.log(p1);
 
             let p2 = document.createElement('p');
-            p2.className = ".js-card-text";
+            p2.className = "js-card-text";
             STRAINDESCRIPTION = infoArr[0].desc;
             p2.textContent = STRAINDESCRIPTION;
             console.log(p2);
             console.log(infoArr[0]);
 
             let p3 = document.createElement('p');
-            p3.className = ".js-card-text";
+            p3.className = "js-card-text";
             STRAINEFFECTS = infoArr[1];
             p3.textContent = effectText(STRAINEFFECTS);
             console.log(p3);
             console.log(infoArr[1]);
 
             let p4 = document.createElement('p');
-            p4.className = ".js-card-text";
+            p4.className = "js-card-text";
             STRAINFLAVORS = infoArr[2]
             p4.textContent = flavorText(STRAINFLAVORS);
             console.log(p4);
@@ -147,6 +149,7 @@ function createSingleStrainDOM(strainObj){
             card.appendChild(p3);
             card.appendChild(p4);
             //cardDeck.appendChild(card);
+            STRAINDOGDOMARR[0] = card;
             return card;
         })
 }
@@ -201,16 +204,72 @@ function createNewDog(){
 function findDog(dogBreed){
     requestData(randomDogURLGenerator(dogBreed))
         .then(lookInside)
+        .then(selectDog)
+        .then(buildDogDOM)
+}
+
+function selectDog(dogArr){
+    console.log('dogs');
+    let dog = dogArr.animals[Math.floor(Math.random() * dogArr.animals.length)];
+    console.log(dog);
 }
 
 function randomDogURLGenerator(dogBreed){
-    return `http://api.petfinder.com/pet.getRandom?key=${CLIENT_ID}&animal=dog&breed=${dogBreed}&location=${LOCATION}&output=full&format=json`;
+    return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100`;
+}
+
+function buildDogDOM(dogCard){
+    let cardDeck = document.querySelector(".card-z");
+    let card = document.createElement('div');
+    card.className = ".js-card-title";
+    
+    let h5 = document.createElement("h5");
+    h5.className = ".js-card-title";
+    h5.textContent = "Your new Best Friend!";
+
+    let img = document.createElement("img");
+    img.src = "images/noun_Marijuana_2183514.png";
+    img.className = ".js-card-img-top";
+    img.alt = "weed leaf";
+
+    let p1 = document.createElement('p');
+    p1.className = ".js-card-text";
+    STRAINNAME = strainObj.name;
+    p1.textContent = STRAINNAME;
+    console.log(p1);
+
+    let p2 = document.createElement('p');
+    p2.className = ".js-card-text";
+    STRAINDESCRIPTION = infoArr[0].desc;
+    p2.textContent = STRAINDESCRIPTION;
+    console.log(p2);
+    console.log(infoArr[0]);
+
+    let p3 = document.createElement('p');
+    p3.className = ".js-card-text";
+    STRAINEFFECTS = infoArr[1];
+    p3.textContent = effectText(STRAINEFFECTS);
+    console.log(p3);
+    console.log(infoArr[1]);
+
+    let p4 = document.createElement('p');
+    p4.className = ".js-card-text";
+    STRAINFLAVORS = infoArr[2]
+    p4.textContent = flavorText(STRAINFLAVORS);
+    console.log(p4);
+    console.log(infoArr[2]);
+
 }
 
 
 // getAllOfRace('Sativa');
 // getStrain(strainID);
 getToken();
-createRaceDOMs();
+
+window.addEventListener('DOMContentLoaded', createRaceDOMs);
+
+//reset button clicked here and then....
+// clearCardDeck();
+// createRaceDOMs();
 
 // console.log(getStrainInfo(255));

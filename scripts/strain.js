@@ -271,7 +271,6 @@ function buildDogDOM(dogCard){
 function main(){
     clearCardDeck();
     //createLocationDom();
-    
     createRaceDOMs();
 }
 

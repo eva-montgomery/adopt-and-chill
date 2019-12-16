@@ -230,30 +230,30 @@ function buildDogDOM(dogCard){
     console.log(dogCard);
     let cardDeck = document.querySelector(".card-z");
     let card = document.createElement('div');
-    card.className = ".js-card-title";
+    card.className = "js-card-title";
     
     let h5 = document.createElement("h5");
-    h5.className = ".js-card-title";
+    h5.className = "js-card-title";
     h5.textContent = "Your new Best Friend!";
 
     let img = document.createElement("img");
     img.src = dogCard.photos[0].full;
-    img.className = ".js-card-img-top";
+    img.className = "js-card-img-top";
     img.alt = "your new best friend!";
 
     let p1 = document.createElement('p');
-    p1.className = ".js-card-text";
+    p1.className = "js-card-text";
     p1.textContent = dogCard.name;
     console.log(p1);
 
     let p2 = document.createElement('p');
-    p2.className = ".js-card-text";
+    p2.className = "js-card-text";
     p2.textContent = dogCard.description;
     console.log(p2);
 
 
     let a = document.createElement('a');
-    a.className = ".js-adopt-button";
+    a.className = "js-adopt-button";
     a.href = dogCard.url;
     a.textContent = `adopt me!!`;
     

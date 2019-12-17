@@ -295,7 +295,7 @@ function buildDogDOM(dogCard){
     h5.textContent = "Your new Best Friend!";
 
     let img = document.createElement("img");
-    if(!dogCard.photos[0]){
+    if(!dogCard.photos[0]){ //if petfinder API doesn't have any photos for dog, use default
         img.src = "images/weed-eyes.png";
     }else{
         img.src = dogCard.photos[0].full;

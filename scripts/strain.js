@@ -26,12 +26,12 @@ function formBuilder(){
     input1.className = "js-search-input";
     input1.type = "text";
     //input1.name = "search";
-    input1.placeholder = "zip code plz";
+    input1.placeholder = "Enter your Zip Code";
 
     let input2 = document.createElement("input");
-    input2.localName = "js-search-btn";
+    input2.className = "js-search-btn";
     input2.type = "submit";
-
+ 
     let reset = document.createElement("reset");
     reset.className = "js-search-btn";
     reset.type = "reset";
@@ -43,6 +43,8 @@ function formBuilder(){
     thingy.appendChild(form);
     thingy.appendChild(reset);
 }
+
+
 
 function lookInside(o){
     console.log(o);

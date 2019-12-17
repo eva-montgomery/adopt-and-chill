@@ -4,7 +4,7 @@
 }
 
 html, body {
-    /* display flex body so that bigger container can flex-grow */
+    /* display:flex the body so that contents-container can flex-grow */
     display: flex;
     flex-direction: column;
     font-family: 'IBM Plex Mono', monospace;
@@ -104,7 +104,7 @@ footer {
     color: rgb(251, 239, 91);
     font-size: 32px;
     display: inline-block !important;
-   
+
 } 
 
 .logo {
@@ -134,8 +134,49 @@ footer {
 .search-input {
     border-radius: 25px;
 }
+ 
+.text-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
-.form-container {
+.zipcode-button, form  {
+    background-color:  rgb(203, 237, 208);
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.js-search-btn {
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    color: blueviolet; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: rgba(33,224,163,1);
+}
+
+.js-search-input {
+    justify-content: center;
+    display: flex;
+    /* padding-top: 5px;
+    padding-bottom: 5px; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 25px;
+}
+
+.js-search-btn:hover {
+    /* color: rgba(255,255,255,1); */
+    color: hotpink;
+    background: rgb(30, 205, 151);
+}
+
+/* .form-container {
     justify-content: center;
     display: flex;
     padding-top: 5px;
@@ -153,12 +194,12 @@ footer {
   justify-content: center;
   color: blueviolet;
   
-}
-.search-btn:hover {
-    /* color: rgba(255,255,255,1); */
-    color: rgb(231, 188, 255);
+} */
+/* .js-search-btn:hover {
+    color: rgba(255,255,255,1); 
+    color: hotpink;
     background: rgb(30, 205, 151);
-  }
+  } */
 
 /* unvisited link */
 a:link {
@@ -204,5 +245,4 @@ a:hover {
         padding: 20px 10px 20px 10px;
     } */
 }
-
 

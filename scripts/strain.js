@@ -1,10 +1,8 @@
 let STRAINNAME;
 let STRAINID;
-let STRAINDESCRIPTION;
 let STRAINEFFECTS;
-let STRAINFLAVORS;
 let LOCATION = `30307`;
-let STRAINDOGDOMARR = [];
+let cardDeck = document.querySelector(".card-z");
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
@@ -14,24 +12,60 @@ function strainURLGen(strainID, searchy){
 }
 
 function randomDogURLGenerator(dogBreed){
-    return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100`;
+    return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100&status=adoptable`;
 }
+
+function formBuilder(){
+    let thingy = document.querySelector(".zipcode-button");
+
+    let form = document.createElement("form");
+    form.action="";
+    form.class="js-form-container";
+
+    let input1 = document.createElement("input");
+    input1.className = "js-search-input";
+    input1.type = "text";
+    //input1.name = "search";
+    input1.placeholder = "Enter your Zip Code";
+
+    let input2 = document.createElement("input");
+    input2.className = "js-search-btn";
+    input2.type = "submit";
+ 
+    let reset = document.createElement("reset");
+    reset.className = "js-search-btn";
+    reset.type = "reset";
+
+    form.appendChild(input1);
+    form.appendChild(input2);
+    form.addEventListener("submit", e => LOCATION = e.target.elements[0].value);
+
+    thingy.appendChild(form);
+    thingy.appendChild(reset);
+}
+
+
 
 function lookInside(o){
     console.log(o);
     return o;
 }
 
-function getAllOfRace(race){
-    return fetch(strainRaceURLGen(race))
-        .then(p => p.json())
-        .then(lookInside)
-        .then(createRandomStrainDOM)
-        // .then(createStrainDOMs)
+function clearCardDeck(passThru){
+    cardDeck.textContent = "";
+    return passThru;
+}
+
+function appendCardToDeck(card){
+    cardDeck.appendChild(card);
+}
+
+function appendFinalCards(){
+    CARDARR.map(card => cardDeck.appendChild(card));
 }
 
 function createRaceDOMs(){
-    let cardDeck = document.querySelector(".card-z");
+    let raceDomArr = [];
     let raceArr = ["Indica", "Sativa", "Hybrid"];
     for (let race of raceArr) {
         let card = document.createElement('div');
@@ -50,44 +84,30 @@ function createRaceDOMs(){
         card.appendChild(h5);
         card.addEventListener('click', raceClick);
         
-        cardDeck.appendChild(card);
+        raceDomArr.push(card);
     }
+    return raceDomArr;
 }
 
 function raceClick(event){
     // to add begginer, intermediate, and expert modes, CHANGE THIS FUNCTION!!!!
     // 3 if statements for each different difficulty.
-    console.log(event);
-    // console.log(event);
-    // console.log(event.currentTarget.race);
+    let domArr=[];
     fetch(strainRaceURLGen(event.currentTarget.race))
         .then(x => x.json())
-        //.then(lookInside)
         .then(selectRandomStrain)
-        //.then(lookInside)
-        .then(createSingleStrainDOM)
-        .then(lookInside)
-        .then(createNewDog)
-        .then(lookInside)
+        .then(getStrainInfo)
         .then(clearCardDeck)
-        .then(lookInside)
-        .then(appendCardsToDeck)
-}
-
-function createStrainDOMs(strainsObjArr){
-    console.log(strainsObjArr);
-    for (let strain of strainsObjArr){
-        createSingleStrainDOM(strain);
-    }
-    // let strainsArr = Object.keys(strainsObj);
-    //iterates thru all the strains of a race and creates a clickable DOM DIV for each, style TBD.
-    // onClick function should set both the strainName and strainID global vars
+        .then(createSingleStrainDOM)
+        .then(createNewDog)
+        
 }
 
 function selectRandomStrain(strainArr){
     let rando = Math.floor(Math.random() * strainArr.length);
-    console.log(strainArr);
-    return strainArr[rando];
+    STRAINNAME = strainArr[rando].name;
+    STRAINID = strainArr[rando].id;
+    return STRAINID;
 }
 
 async function getStrainInfo(strainID){
@@ -96,70 +116,43 @@ async function getStrainInfo(strainID){
     return values;
 }
 
-function clearCardDeck(passThru){
-    let cardDeck = document.querySelector(".card-z");
-    cardDeck.textContent = "";
-    return passThru;
-}
+function createSingleStrainDOM(infoArr){
+    let card = document.createElement('div');
+    card.className = "js-card-title";
+    
+    let h5 = document.createElement("h5");
+    h5.className = "js-card-title";
+    h5.textContent = "Your new Strain!";
 
-function appendCardToDeck(card){
-    let cardDeck = document.querySelector(".card-z");
+    let img = document.createElement("img");
+    img.src = "images/noun_Marijuana_2183514.png";
+    img.className = "js-card-img-top";
+    img.alt = "weed leaf";
+
+    let p1 = document.createElement('p');
+    p1.className = "js-card-text";
+    p1.textContent = STRAINNAME;
+    
+    let p2 = document.createElement('p');
+    p2.className = "js-card-text";
+    p2.textContent = infoArr[0].desc;
+    
+    let p3 = document.createElement('p');
+    p3.className = "js-card-text";
+    STRAINEFFECTS = infoArr[1];
+    p3.textContent = effectText(STRAINEFFECTS);
+    
+    let p4 = document.createElement('p');
+    p4.className = "js-card-text";
+    p4.textContent = flavorText(infoArr[2]);
+    
+    card.appendChild(h5);
+    card.appendChild(img);
+    card.appendChild(p1);
+    card.appendChild(p2);
+    card.appendChild(p3);
+    card.appendChild(p4);
     cardDeck.appendChild(card);
-}
-
-function appendCardsToDeck(domArr){
-    domArr.map(appendCardToDeck);
-}
-
-function createSingleStrainDOM(strainObj){
-    return getStrainInfo(strainObj.id)
-        .then(infoArr => {
-            let cardDeck = document.querySelector(".card-z");
-            let card = document.createElement('div');
-            card.className = "js-card-title";
-            
-            let h5 = document.createElement("h5");
-            h5.className = "js-card-title";
-            h5.textContent = "Your new Strain!";
-
-            let img = document.createElement("img");
-            img.src = "images/noun_Marijuana_2183514.png";
-            img.className = "js-card-img-top";
-            img.alt = "weed leaf";
-
-            let p1 = document.createElement('p');
-            p1.className = "js-card-text";
-            p1.textContent = strainObj.name;
-            
-            let p2 = document.createElement('p');
-            p2.className = "js-card-text";
-            STRAINDESCRIPTION = infoArr[0].desc;
-            console.log(infoArr[0]);
-            p2.textContent = STRAINDESCRIPTION;
-            
-            let p3 = document.createElement('p');
-            p3.className = "js-card-text";
-            STRAINEFFECTS = infoArr[1];
-            console.log(infoArr[1]);
-            p3.textContent = effectText(STRAINEFFECTS);
-            
-            let p4 = document.createElement('p');
-            p4.className = "js-card-text";
-            STRAINFLAVORS = infoArr[2];
-            console.log(infoArr[2]);
-            p4.textContent = flavorText(STRAINFLAVORS);
-            
-            card.appendChild(h5);
-            card.appendChild(img);
-            card.appendChild(p1);
-            card.appendChild(p2);
-            card.appendChild(p3);
-            card.appendChild(p4);
-            //cardDeck.appendChild(card);
-            let domArr = [];
-            domArr.push(card);
-            return domArr;
-        })
 }
 
 function effectText(effectObj){
@@ -200,27 +193,24 @@ function strainToBreedConverter(strainID = STRAINID){
     let dogBreed = dogArr[Math.floor(Math.random() * dogArr.length)];
     // some magic goes here.
     // use global variable STRAINID by default, or pass in another to override.
-    console.log(strainID);
     return dogBreed;
 }
 
-function createNewDog(domArr){
-    let dogBreed = strainToBreedConverter();
-    console.log(dogBreed);
-    domArr.push(findDog(dogBreed));
-    console.log(domArr);
-    return domArr;
-}
+function createNewDog(){
+    console.log("createNewDog");
+    requestData(randomDogURLGenerator(strainToBreedConverter()))
+        .then(r =>{
+            if(r.animals.length == 0){
+                createNewDog();
+            } else{
+                buildDogDOM(selectRandDog(r));
+            }
+        })
+}    
 
-function findDog(dogBreed){
-    return requestData(randomDogURLGenerator(dogBreed))
-        .then(lookInside)
-        .then(selectDog)
-        .then(buildDogDOM)
-}
 
-function selectDog(dogArr){
-    console.log('dogs');
+function selectRandDog(dogArr){
+    console.log('selectRandDog');
     console.log(dogArr);
     let dog = dogArr.animals[Math.floor(Math.random() * dogArr.animals.length)];
     console.log(dog);
@@ -228,8 +218,6 @@ function selectDog(dogArr){
 }
 
 function buildDogDOM(dogCard){
-    console.log(dogCard);
-    let cardDeck = document.querySelector(".card-z");
     let card = document.createElement('div');
     card.className = "js-card-title";
     
@@ -252,7 +240,6 @@ function buildDogDOM(dogCard){
     p2.textContent = dogCard.description;
     console.log(p2);
 
-
     let a = document.createElement('a');
     a.className = "js-adopt-button";
     a.href = dogCard.url;
@@ -263,30 +250,17 @@ function buildDogDOM(dogCard){
     card.appendChild(p1);
     card.appendChild(p2);
     card.appendChild(a);
-    console.log(card);
     cardDeck.appendChild(card);
-    return card;
 }
-
 
 function main(){
     clearCardDeck();
-    //createLocationDom();
-    
-    createRaceDOMs();
+    // createZipBar();
+    raceDomArr.map(appendCardToDeck);
 }
-
-// getAllOfRace('Sativa');
-// getStrain(strainID);
 getToken();
+formBuilder();
 
-
-
+const raceDomArr = createRaceDOMs();
 
 window.addEventListener('DOMContentLoaded', main);
-
-//reset button clicked here and then....
-// clearCardDeck();
-// createRaceDOMs();
-
-// console.log(getStrainInfo(255));

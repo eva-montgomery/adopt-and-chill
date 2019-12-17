@@ -175,7 +175,7 @@ function effectText(effectObj){
     for (let effect of effectObj.medical){
         medEffects = medEffects + effect + " ";
     }
-    let effectString = `effects :\n Positive : \n ${posiEffects} \n Negative : \n ${negEffects} \n Medical :\n ${medEffects}`;
+    let effectString = `Effects:\n Positive : \n ${posiEffects} \n Negative: \n ${negEffects} \n Medical:\n ${medEffects}`;
     return effectString;
 }
 
@@ -184,7 +184,7 @@ function flavorText(flavorObj){
     for (let flavor of flavorObj){
         flavors = flavors + flavor + " ";
     }
-    let flavorString = `Flavor notes : ${flavors}`;
+    let flavorString = `Flavor notes: ${flavors}`;
     return flavorString;
 }
 

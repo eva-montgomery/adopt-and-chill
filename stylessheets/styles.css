@@ -145,10 +145,11 @@ footer {
     box-shadow: burlywood;
     /* border: 1px solid red */
 }
-.search-btn, .js-adopt-button, .js-zip-button{
+.search-btn, .js-adopt-button, .js-zip-button {
   border-radius: 25px;
   border: 2px solid rgba(33,224,163,1);
   background: rgba(33,224,163,1);
+  padding: 5px;
   justify-content: center;
   color: blueviolet;
   

@@ -1,9 +1,14 @@
+// global variables
+
 let STRAINNAME;
 let STRAINEFFECTS;
 let LOCATION="30307";
 let DOGCALLS;
 let BREEDARRAY;
 let cardDeck = document.querySelector(".card-z");
+
+
+//API URL creation functions.
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
@@ -16,6 +21,7 @@ function randomDogURLGenerator(dogBreed){
     return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100&status=adoptable`;
 }
 
+//Builds DOM elements for zipcode form and reset button, loads them into an array, and returns that array.
 function formBuilder(){
     let domArr = [];
 
@@ -26,7 +32,6 @@ function formBuilder(){
     let input1 = document.createElement("input");
     input1.className = "js-search-input";
     input1.type = "text";
-    //input1.name = "search";
     input1.placeholder = "Enter your Zip Code";
 
     let input2 = document.createElement("input");
@@ -41,10 +46,9 @@ function formBuilder(){
     form.appendChild(input1);
     form.appendChild(input2);
     form.addEventListener("submit", e =>{
-        e.preventDefault();
-        LOCATION = e.target.elements[0].value;
-        console.log(LOCATION);
-        if(LOCATION.length != 5){
+        e.preventDefault(); //keeps the page from reloading on click
+        LOCATION = e.target.elements[0].value; //sets global LOCATION variable to value entered into field.
+        if(LOCATION.length != 5){ //checks to see if valid zipcode length, and if not, resets LOCATION to default zipcode.
             LOCATION = "30307";
             clearBarDeck();
         }
@@ -55,12 +59,12 @@ function formBuilder(){
     return domArr;
 }
 
-function lookInside(o){
+function lookInside(o){  //function to see what is being passed thru in a .then chain
     console.log(o);
     return o;
 }
 
-function clearCardDeck(passThru){
+function clearCardDeck(passThru){  //empties the primary container, so that it can be refilled.
     cardDeck.textContent = "";
     return passThru;
 }

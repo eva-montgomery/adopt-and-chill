@@ -31,6 +31,24 @@ footer {
     color: rgb(251, 239, 91);
 }
 
+/* unvisited link */
+a:link {
+    color: blueviolet;
+    text-decoration: none;
+  }
+
+/* visited link */
+a:visited {
+    color: rgb(251,249, 91);
+  }
+
+/* mouse over link */
+a:hover {
+    color: rgb(231, 188, 255);;
+    text-decoration: none;
+    /* background-color: yellow; */
+  }
+
 /* .big-container {
     min-height: 100%;
     width: 100%;
@@ -233,24 +251,7 @@ footer {
     background: rgb(30, 205, 151);
   }  */
 
-/* unvisited link */
-a:link {
-    color: rgb(251,249, 91);
-    text-decoration: none;
 
-  }
-
-/* visited link */
-a:visited {
-    color: rgb(251,249, 91);
-  }
-
-/* mouse over link */
-a:hover {
-    color: rgb(231, 188, 255);;
-    text-decoration: none;
-    /* background-color: yellow; */
-  }
 
 @media screen and (min-width: 769px) {
     .card-z {
@@ -277,8 +278,8 @@ a:hover {
         display: flex;
         flex-direction: row;
         width: 980px;
-    }
-     */
+    } */
+    
 
     /* .card-title, .js-card-title {
         padding: 20px 10px 20px 10px;

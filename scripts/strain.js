@@ -40,7 +40,7 @@ function formBuilder(){
 
     let reset = document.createElement("button");
     reset.className = "js-reset-btn";
-    reset.textContent = "reset";
+    reset.textContent = "Reset";
     reset.addEventListener("click", resetPage);
 
     form.appendChild(input1);

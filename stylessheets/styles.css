@@ -145,35 +145,65 @@ footer {
     margin-bottom: 15px;
 }
 
-.zipcode-button, form  {
-    background-color:  rgb(203, 237, 208);
+ .zipcode-button  {
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
+    padding: 10px 0;
+    justify-content: space-between;
+    background-color:  rgb(203, 237, 208);
+ 
 }
 
-.js-search-btn {
-    border-radius: 25px;
+.js-form-container {
     display: flex;
+    background-color: rgb(203, 237, 208);
     justify-content: center;
-    color: blueviolet; 
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background: rgba(33,224,163,1);
+    /* border: 1px solid red; */
+    /* flex-wrap: nowrap; */
 }
 
 .js-search-input {
-    justify-content: center;
+    /* justify-content: center; */
     display: flex;
     /* padding-top: 5px;
     padding-bottom: 5px; */
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 25px;
+    margin-left: 20px;
+    /* border: 1px solid red; */
+}
+
+.js-search-btn {
+    border-radius: 25px;
+    display: flex;
+    /* justify-content: center; */
+    color: blueviolet; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background: rgba(33,224,163,1);
+    /* border: 1px solid red; */
 }
 
 .js-search-btn:hover {
     /* color: rgba(255,255,255,1); */
+    color: hotpink;
+    background: rgb(30, 205, 151);
+}
+
+.js-reset-btn {
+    border-radius: 25px;
+    display: flex;
+    color: blueviolet; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 30px;
+    background: rgba(33,224,163,1);
+    /* border: 1px solid red; */
+    align-content: right;
+}
+
+.js-reset-btn:hover {
     color: hotpink;
     background: rgb(30, 205, 151);
 }
@@ -197,11 +227,11 @@ footer {
   color: blueviolet;
   
 } */
-/* .js-search-btn:hover {
+ /* .js-search-btn:hover {
     color: rgba(255,255,255,1); 
     color: hotpink;
     background: rgb(30, 205, 151);
-  } */
+  }  */
 
 /* unvisited link */
 a:link {
@@ -235,7 +265,6 @@ a:hover {
         width: 100%;
         padding: 20px 50px 20px 50px;
     }
-
 }
 
 
@@ -243,8 +272,17 @@ a:hover {
     .card-z {
         width: 900px;
     }
+
+    /* .zipcode-button {
+        display: flex;
+        flex-direction: row;
+        width: 980px;
+    }
+     */
+
     /* .card-title, .js-card-title {
         padding: 20px 10px 20px 10px;
     } */
-}
 
+}
+  

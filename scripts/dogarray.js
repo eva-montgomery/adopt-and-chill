@@ -218,7 +218,7 @@ const dogArr=[
 `Saluki`,
 `Samoyed`,
 `Sarplaninac`,
-`Schipperke`,
+// `Schipperke`,
 `Schnauzer`,
 // `Schnoodle`,
 `Scottish Deerhound`,

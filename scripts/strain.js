@@ -17,7 +17,7 @@ function strainURLGen(strainID, searchy){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/data/${searchy}/${strainID}`;
 }
 
-function randomDogURLGenerator(dogBreed){
+function DogURLGenerator(dogBreed){
     return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100&status=adoptable`;
 }
 
@@ -59,29 +59,7 @@ function formBuilder(){
     return domArr;
 }
 
-//resetPage is triggered by an event listener on the reset button, it clears the HTML DIV containers, and runs main to restart from scratch
-function resetPage(){
-    clearCardDeck();
-    clearBarDeck();
-    main();
-}
-
-function lookInside(o){  //function to see what is being passed thru in a .then chain
-        return o;
-}
-
-function clearCardDeck(passThru){  //empties the primary container, so that it can be refilled.
-    cardDeck.textContent = "";
-    return passThru;
-}
-//clearBarDeck() resets zip bar to defaults
-function clearBarDeck(){
-    let textToReset = document.querySelector(".js-search-input");
-        textToReset.value = "";
-    LOCATION = "30307";
-}
-
-//creaeteRaceDOMs() creates a DOM element for each species, appends them to an array, and returns that array
+//createRaceDOMs() creates a DOM element for each species, appends them to an array, and returns that array
 function createRaceDOMs(){
     let raceDomArr = [];
     let raceArr = ["Indica", "Sativa", "Hybrid"];
@@ -117,6 +95,25 @@ function raceClick(event){
         .then(createSingleStrainDOM)
         .then(buildGoodDogArr)
         .then(createNewDog)
+}
+
+//resetPage is triggered by an event listener on the reset button, it clears the HTML DIV containers, and runs main to restart from scratch
+function resetPage(){
+    BREEDARRAY = [];
+    clearCardDeck();
+    clearBarDeck();
+    main();
+}
+
+function clearCardDeck(passThru){  //empties the primary container, so that it can be refilled.
+    cardDeck.textContent = "";
+    return passThru;
+}
+//clearBarDeck() resets zip bar to defaults
+function clearBarDeck(){
+    let textToReset = document.querySelector(".js-search-input");
+    textToReset.value = "";
+    LOCATION = "30307";
 }
 
 // selectRandomStrain(strainArr) takes in an array of strains from an API call, randomly selects one, sets global STRAINNAME variable, and returns the id of selected strain.
@@ -202,7 +199,6 @@ function flavorText(flavorObj){
     return flavorString;
 }
 
-
 //buildGoodDogArr takes in an Object, of strain effects, and generates an array of dog breeds related to said effects
 function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     let effArr = [];
@@ -238,6 +234,7 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     BREEDARRAY=newDogArr;
     return newDogArr;
 }
+
 //randomBreedSelector takes in an array of dog breeds(or the default global array BREEDARRAY) and returns a randomly selected one.
 function randomBreedSelector(breedArray = BREEDARRAY){
     return breedArray[Math.floor(Math.random() * breedArray.length)];
@@ -245,9 +242,9 @@ function randomBreedSelector(breedArray = BREEDARRAY){
 
 //createNewDog fetches an array of dogs of randomly selected breed, and then calls a DOM builder.
 function createNewDog(){
-            requestData(randomDogURLGenerator(randomBreedSelector())) //requestData takes an API URL, adds token headers, and fetches.
+            requestData(DogURLGenerator(randomBreedSelector())) //requestData takes an API URL, adds token headers, and fetches.
             .then(r =>{
-                if(DOGCALLS > 3){//if more than 3 API calls return no dogs, calls buildNoDogDOM to break the users heart
+                if(DOGCALLS > 4){//if more than 3 API calls return no dogs, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();
                 } else if(!r.animals){ //if API call FAILS, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();

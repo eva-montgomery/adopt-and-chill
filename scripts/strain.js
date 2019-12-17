@@ -1,8 +1,8 @@
 let STRAINNAME;
-let STRAINID;
 let STRAINEFFECTS;
 let LOCATION="30307";
 let DOGCALLS;
+let BREEDARRAY;
 let cardDeck = document.querySelector(".card-z");
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
@@ -21,7 +21,7 @@ function formBuilder(){
 
     let form = document.createElement("form");
     form.action="";
-    form.class="js-form-container";
+    form.className="js-form-container";
 
     let input1 = document.createElement("input");
     input1.className = "js-search-input";
@@ -120,15 +120,14 @@ function raceClick(event){
         .then(getStrainInfo)
         .then(clearCardDeck)
         .then(createSingleStrainDOM)
+        .then(buildGoodDogArr)
         .then(createNewDog)
-        
 }
 
 function selectRandomStrain(strainArr){
     let rando = Math.floor(Math.random() * strainArr.length);
     STRAINNAME = strainArr[rando].name;
-    STRAINID = strainArr[rando].id;
-    return STRAINID;
+    return strainArr[rando].id;
 }
 
 async function getStrainInfo(strainID){
@@ -209,10 +208,44 @@ function getStrain(strainID){
         .then(strainToBreedConverter)
 }
 
-function strainToBreedConverter(strainID = STRAINID){
-    let dogBreed = dogArr[Math.floor(Math.random() * dogArr.length)];
-    // some magic goes here.
-    // use global variable STRAINID by default, or pass in another to override.
+
+function buildGoodDogArr(strainEffects = STRAINEFFECTS){
+    let effArr = [];
+    let newDogArr = [];
+    let dogHisto = {};
+    let dogArr = Object.keys(dogChars);
+    for (let effCat of Object.keys(strainEffects)){
+        for (let eff of strainEffects[effCat]){
+            effArr.push(eff);
+        }
+    }
+
+    if(effArr.length == 0){
+        return dogArr;
+    }
+
+    for (let dog of dogArr){
+        console.log(dog);
+        for (let eff of effArr){
+            console.log(dogChars[dog]);
+            if(dogChars[dog].includes(eff)){
+                if(dog in Object.keys(dogHisto)){
+                    dogHisto[dog] += 1;
+                } else{
+                    dogHisto[dog] = 1;
+                }
+            }
+        }
+    }
+    console.log(dogHisto);
+    newDogArr = Object.keys(dogHisto);
+    BREEDARRAY=newDogArr;
+    return newDogArr;
+}
+
+function strainToBreedConverter(strainEffects = STRAINEFFECTS){
+    let dogBreed = BREEDARRAY[Math.floor(Math.random() * BREEDARRAY.length)];
+
     return dogBreed;
 }
 

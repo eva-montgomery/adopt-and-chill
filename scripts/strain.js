@@ -31,7 +31,7 @@ function formBuilder(){
     let input2 = document.createElement("input");
     input2.className = "js-search-btn";
     input2.type = "submit";
-
+ 
     let reset = document.createElement("reset");
     reset.className = "js-search-btn";
     reset.type = "reset";

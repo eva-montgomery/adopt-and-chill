@@ -21,7 +21,7 @@ function formBuilder(){
 
     let form = document.createElement("form");
     form.action="";
-    form.class="js-form-container";
+    form.className ="js-form-container";
 
     let input1 = document.createElement("input");
     input1.className = "js-search-input";
@@ -35,7 +35,7 @@ function formBuilder(){
 
     let reset = document.createElement("button");
     reset.className = "js-reset-btn";
-    reset.textContent = "reset";
+    reset.textContent = "Reset";
     reset.addEventListener("click", resetPage);
 
     form.appendChild(input1);

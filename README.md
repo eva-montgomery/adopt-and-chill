@@ -15,8 +15,8 @@ Adopt and Chill solves the serious problem of overcrowded animal shelters in a s
 
 
 
-![image of dog breed array]
-(images/dogbreedarray.png)
+![image of code]
+(https://github.com/eva-montgomery/adopt-and-chill/blob/aylor/images/dogbreedarray.png)
 
 ### APIs USED 
 * 

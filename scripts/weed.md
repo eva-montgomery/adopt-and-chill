@@ -188,7 +188,6 @@ Banana Diesel
 Banana Kush
 Banana OG
 Banana Peel
-[100 … 199]
 Bananas
 Bandana
 Bango
@@ -289,7 +288,6 @@ Black Afghan
 Black Betty
 Black Bubba
 Black Cherry Cheesecake
-[200 … 299]
 Black Cherry OG
 Black Cherry Pie
 Black Cherry Soda
@@ -390,7 +388,6 @@ Blue Widow
 Blue Wonder
 Blue Wreck
 Blue Zombie
-[300 … 399]
 Blueberry
 Blueberry AK
 Blueberry Blast
@@ -491,7 +488,6 @@ Caramel Candy Kush
 Caramel Kona Coffee Kush
 Caramelicious
 Caramella
-[400 … 499]
 Caramelo
 Carl Sagan
 Carnival
@@ -592,7 +588,6 @@ Colorado Bubba
 Colorado Chem
 Colorado Clementines
 Commerce City Kush
-[500 … 599]
 Concord Grape Blockhead
 Confidential Cheese
 Connie Chung
@@ -693,7 +688,6 @@ Dogwalker OG
 Dolla Sign OG Kush
 Don Shula
 Donegal
-[600 … 699]
 Donna OG
 Doobiebird Daydream
 Doox
@@ -794,7 +788,6 @@ Fire OG
 Firewalker OG
 Flaming Cookies
 Flo
-[700 … 799]
 Flo OG
 Flo Walker
 Flowerbomb Kush
@@ -895,7 +888,6 @@ Goverment Mule
 Grand Doggy Purps
 Grand Hindu
 Grand Hustle
-[800 … 899]
 Granddaddy Purple
 Grandma’s Batch
 Grandpa Larry OG
@@ -996,7 +988,6 @@ Headband
 Headbanger
 Heaven Scent
 Heavy Duty Fruity
-[900 … 999]
 Heisenberg Kush
 Hell Raiser OG
 Hell's Angel OG
@@ -1097,7 +1088,6 @@ Jesus OG
 Jet Fuel
 Jillybean
 Jimi Hendrix
-[1000 … 1099]
 Jock Horror
 Johnny’s Tonic
 Jolly Rancher
@@ -1198,7 +1188,6 @@ Lee Roy
 Legalized OG
 Legend OG
 Legendary Lemon
-[1100 … 1199]
 Lemon Alien Dawg
 Lemon Bananas
 Lemon Bubble
@@ -1299,7 +1288,6 @@ Matanuska Thunder Fuck
 Mataro Blue
 Maui
 Maui Berry
-[1200 … 1299]
 Maui Bubble Gift
 Maui Citrus Punch
 Maui Haole
@@ -1400,7 +1388,6 @@ Northern Lights #5 x Haze
 Northern Skunk
 Northern Wreck
 Nova
-[1300 … 1399]
 Nuggetry OG
 Nuken
 Nurse Jackie
@@ -1501,7 +1488,6 @@ Pineapple Express
 Pineapple Fields
 Pineapple Haze
 Pineapple Jack
-[1400 … 1499]
 Pineapple Kush
 Pineapple OG
 Pineapple Punch
@@ -1602,7 +1588,6 @@ Purple Paralysis
 Purple Passion
 Purple People Eater
 Purple Power
-[1500 … 1599]
 Purple Princess
 Purple Punch
 Purple Rhino
@@ -1703,7 +1688,6 @@ Sasquatch Sap
 Satellite OG
 Satori
 Saturn OG
-[1600 … 1699]
 Savant's Grail
 Schrom
 Scooby Snacks
@@ -1804,7 +1788,6 @@ Sunshine #4
 Sunshine Daydream
 Supa Don
 Super  Chronic
-[1700 … 1799]
 Super Blue Dream
 Super Bud
 Super Cat Piss
@@ -1905,7 +1888,6 @@ The Void
 The White
 The Wife
 Thelonious Skunk
-[1800 … 1899]
 Thin Mint Girl Scout Cookies
 Think Different
 Thor's Hammer
@@ -2006,7 +1988,6 @@ White Caramel Cookie
 White Cheese
 White Cookies
 White Dawg
-[1900 … 1969]
 White Diesel
 White Dragon
 White Dream

@@ -3,10 +3,13 @@
     /* border: 1px solid red;    */
 }
 
-
 html, body {
+    /* display:flex the body so that contents-container can flex-grow */
+    display: flex;
+    flex-direction: column;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
+    font-size: 16px;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(203, 237, 208);
@@ -19,14 +22,26 @@ form {
 
 footer {
     display: flex;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
+    font-size: 14px;
+    /* bottom: 0; */
+     /* width: 100%; */
+    /* height: 200px; */
+    padding: 20px 0px 30px 0px;
     background-color:rgb(9, 52, 33);
     color: rgb(251, 239, 91);
 }
 
+/* .big-container {
+    min-height: 100%;
+    width: 100%;
+} */
+
+.contents-container {
+    /* display: flex;
+    flex-direction: column; */
+    flex-grow: 1;
+    min-height: 100%;
+}
 
 .card-img-top, .js-card-img-top {
     /* display: flex; */
@@ -62,6 +77,8 @@ footer {
 
 .card-title, .js-card-title {
     display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 50px;
 }
 
 
@@ -85,9 +102,9 @@ footer {
     margin: 0 auto;
     vertical-align: middle;
     color: rgb(251, 239, 91);
-    font-size: 24px;
+    font-size: 32px;
     display: inline-block !important;
-   
+
 } 
 
 .logo {
@@ -95,9 +112,10 @@ footer {
     /* display: inline-block !important; */
     /* flex-direction: row; */
     vertical-align: middle;
-    height: 75px;
+    height: 70px;
     width: 75px;
-    margin-left: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .logo > img {
@@ -121,6 +139,8 @@ footer {
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -196,14 +216,13 @@ footer {
     margin-top: 5px;
     margin-bottom: 5px;
     box-shadow: burlywood;
-    border: 1px solid red 
-}*/
-
-
-/* .search-btn, .js-search-btn{
+    /* border: 1px solid red */
+}
+.search-btn, .js-adopt-button, .js-zip-button {
   border-radius: 25px;
   border: 2px solid rgba(33,224,163,1);
   background: rgba(33,224,163,1);
+  padding: 5px;
   justify-content: center;
   color: blueviolet;
   
@@ -216,14 +235,19 @@ footer {
 
 /* unvisited link */
 a:link {
-    color: rgb(9, 52, 33);
+    color: rgb(251,249, 91);
     text-decoration: none;
 
   }
 
+/* visited link */
+a:visited {
+    color: rgb(251,249, 91);
+  }
+
 /* mouse over link */
 a:hover {
-    color: hotpink;
+    color: rgb(231, 188, 255);;
     text-decoration: none;
     /* background-color: yellow; */
   }
@@ -232,23 +256,33 @@ a:hover {
     .card-z {
         display: flex;
         flex-direction: row;
-        width: 800px;
+        text-align: center;
+        justify-content: space-evenly;
+        width: 100%;
     }
-    
+
+    .card-title, .js-card-title {
+        width: 100%;
+        padding: 20px 50px 20px 50px;
+    }
 }
 
 
 @media screen and (min-width: 1200px) {
     .card-z {
-        display: flex;
-        flex-direction: row;
         width: 900px;
     }
+
     /* .zipcode-button {
         display: flex;
         flex-direction: row;
         width: 980px;
     }
      */
+
+    /* .card-title, .js-card-title {
+        padding: 20px 10px 20px 10px;
+    } */
+
 }
   

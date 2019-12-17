@@ -1,9 +1,14 @@
+// global variables
+
 let STRAINNAME;
-let STRAINID;
 let STRAINEFFECTS;
 let LOCATION="30307";
 let DOGCALLS;
+let BREEDARRAY;
 let cardDeck = document.querySelector(".card-z");
+
+
+//API URL creation functions.
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
 }
@@ -16,17 +21,17 @@ function randomDogURLGenerator(dogBreed){
     return `https://api.petfinder.com/v2/animals/?type=dog&breed=${dogBreed}&location=${LOCATION}&limit=100&status=adoptable`;
 }
 
+//Builds DOM elements for zipcode form and reset button, loads them into an array, and returns that array.
 function formBuilder(){
     let domArr = [];
 
     let form = document.createElement("form");
     form.action="";
-    form.className ="js-form-container";
+    form.className="js-form-container";
 
     let input1 = document.createElement("input");
     input1.className = "js-search-input";
     input1.type = "text";
-    //input1.name = "search";
     input1.placeholder = "Enter your Zip Code";
 
     let input2 = document.createElement("input");
@@ -41,10 +46,9 @@ function formBuilder(){
     form.appendChild(input1);
     form.appendChild(input2);
     form.addEventListener("submit", e =>{
-        e.preventDefault();
-        LOCATION = e.target.elements[0].value;
-        console.log(LOCATION);
-        if(LOCATION.length != 5){
+        e.preventDefault(); //keeps the page from reloading on click
+        LOCATION = e.target.elements[0].value; //sets global LOCATION variable to value entered into field.
+        if(LOCATION.length != 5){ //checks to see if valid zipcode length, and if not, resets LOCATION to default zipcode.
             LOCATION = "30307";
             clearBarDeck();
         }
@@ -55,12 +59,12 @@ function formBuilder(){
     return domArr;
 }
 
-function lookInside(o){
+function lookInside(o){  //function to see what is being passed thru in a .then chain
     console.log(o);
     return o;
 }
 
-function clearCardDeck(passThru){
+function clearCardDeck(passThru){  //empties the primary container, so that it can be refilled.
     cardDeck.textContent = "";
     return passThru;
 }
@@ -120,15 +124,14 @@ function raceClick(event){
         .then(getStrainInfo)
         .then(clearCardDeck)
         .then(createSingleStrainDOM)
+        .then(buildGoodDogArr)
         .then(createNewDog)
-        
 }
 
 function selectRandomStrain(strainArr){
     let rando = Math.floor(Math.random() * strainArr.length);
     STRAINNAME = strainArr[rando].name;
-    STRAINID = strainArr[rando].id;
-    return STRAINID;
+    return strainArr[rando].id;
 }
 
 async function getStrainInfo(strainID){
@@ -161,7 +164,7 @@ function createSingleStrainDOM(infoArr){
     let p3 = document.createElement('p');
     p3.className = "js-card-text";
     STRAINEFFECTS = infoArr[1];
-    p3.textContent = effectText(STRAINEFFECTS);
+    p3.innerHTML = effectText(STRAINEFFECTS);
     
     let p4 = document.createElement('p');
     p4.className = "js-card-text";
@@ -189,7 +192,8 @@ function effectText(effectObj){
     for (let effect of effectObj.medical){
         medEffects = medEffects + effect + " ";
     }
-    let effectString = `effects :\n Positive : \n ${posiEffects} \n Negative : \n ${negEffects} \n Medical :\n ${medEffects}`;
+    let effectString = `Effects <br> Positive: <br> ${posiEffects} <br> Negative: <br> ${negEffects} <br> Medical:<br> ${medEffects}`;
+
     return effectString;
 }
 
@@ -198,7 +202,7 @@ function flavorText(flavorObj){
     for (let flavor of flavorObj){
         flavors = flavors + flavor + " ";
     }
-    let flavorString = `Flavor notes : ${flavors}`;
+    let flavorString = `Flavor notes: ${flavors}`;
     return flavorString;
 }
 
@@ -209,10 +213,44 @@ function getStrain(strainID){
         .then(strainToBreedConverter)
 }
 
-function strainToBreedConverter(strainID = STRAINID){
-    let dogBreed = dogArr[Math.floor(Math.random() * dogArr.length)];
-    // some magic goes here.
-    // use global variable STRAINID by default, or pass in another to override.
+
+function buildGoodDogArr(strainEffects = STRAINEFFECTS){
+    let effArr = [];
+    let newDogArr = [];
+    let dogHisto = {};
+    let dogArr = Object.keys(dogChars);
+    for (let effCat of Object.keys(strainEffects)){
+        for (let eff of strainEffects[effCat]){
+            effArr.push(eff);
+        }
+    }
+
+    if(effArr.length == 0){
+        return dogArr;
+    }
+
+    for (let dog of dogArr){
+        console.log(dog);
+        for (let eff of effArr){
+            console.log(dogChars[dog]);
+            if(dogChars[dog].includes(eff)){
+                if(dog in Object.keys(dogHisto)){
+                    dogHisto[dog] += 1;
+                } else{
+                    dogHisto[dog] = 1;
+                }
+            }
+        }
+    }
+    console.log(dogHisto);
+    newDogArr = Object.keys(dogHisto);
+    BREEDARRAY=newDogArr;
+    return newDogArr;
+}
+
+function strainToBreedConverter(strainEffects = STRAINEFFECTS){
+    let dogBreed = BREEDARRAY[Math.floor(Math.random() * BREEDARRAY.length)];
+
     return dogBreed;
 }
 

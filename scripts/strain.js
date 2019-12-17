@@ -314,7 +314,6 @@ function buildDogDOM(dogCard){
     }else{
         img.src = dogCard.photos[0].full;
     }
-    
     img.className = "js-card-img-top";
     img.alt = "your new best friend!";
 
@@ -325,8 +324,13 @@ function buildDogDOM(dogCard){
 
     let p2 = document.createElement('p');
     p2.className = "js-card-text";
-    p2.textContent = dogCard.description;
+    p2.textContent = dogCard.breeds.primary;
     console.log(p2);
+
+    let p3 = document.createElement('p');
+    p3.className = "js-card-text";
+    p3.textContent = dogCard.description;
+    console.log(p3);
 
     let a = document.createElement('a');
     a.className = "js-adopt-button";
@@ -337,6 +341,7 @@ function buildDogDOM(dogCard){
     card.appendChild(img);
     card.appendChild(p1);
     card.appendChild(p2);
+    card.appendChild(p3);
     card.appendChild(a);
     cardDeck.appendChild(card);
 }

@@ -273,17 +273,15 @@ a:hover {
     .card-z {
         width: 900px;
     }
+    .zipcode-button {
+        max-width: 1000px;
+        margin-left: 300px;
+        margin-right: 300px;
+        
+    } 
 
-    /* .zipcode-button {
-        display: flex;
-        flex-direction: row;
-        width: 980px;
-    } */
-    
 
-    /* .card-title, .js-card-title {
-        padding: 20px 10px 20px 10px;
-    } */
+  
 
 }
   

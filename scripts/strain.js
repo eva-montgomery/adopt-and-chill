@@ -175,7 +175,8 @@ function effectText(effectObj){
     for (let effect of effectObj.medical){
         medEffects = medEffects + effect + " ";
     }
-    let effectString = `Effects:\n Positive : \n ${posiEffects} \n Negative: \n ${negEffects} \n Medical:\n ${medEffects}`;
+    let effectString = `Effects \n Positive : \n ${posiEffects} \n Negative: \n ${negEffects} \n Medical:\n ${medEffects}`;
+
     return effectString;
 }
 

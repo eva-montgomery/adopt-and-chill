@@ -4,8 +4,12 @@
 }
 
 html, body {
+    /* display flex body so that bigger container can flex-grow */
+    display: flex;
+    flex-direction: column;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
+    font-size: 16px;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(203, 237, 208);
@@ -18,15 +22,26 @@ form {
 
 footer {
     display: flex;
-    position: relative;
-    bottom: 0;
-    margin-top: 20px;
-    width: 100%;
-    height: 200px;
+    font-size: 14px;
+    /* bottom: 0; */
+     /* width: 100%; */
+    /* height: 200px; */
+    padding: 20px 0px 30px 0px;
     background-color:rgb(9, 52, 33);
     color: rgb(251, 239, 91);
 }
 
+/* .big-container {
+    min-height: 100%;
+    width: 100%;
+} */
+
+.contents-container {
+    /* display: flex;
+    flex-direction: column; */
+    flex-grow: 1;
+    min-height: 100%;
+}
 
 .card-img-top, .js-card-img-top {
     /* display: flex; */
@@ -87,7 +102,7 @@ footer {
     margin: 0 auto;
     vertical-align: middle;
     color: rgb(251, 239, 91);
-    font-size: 24px;
+    font-size: 32px;
     display: inline-block !important;
    
 } 
@@ -97,9 +112,10 @@ footer {
     /* display: inline-block !important; */
     /* flex-direction: row; */
     vertical-align: middle;
-    height: 75px;
+    height: 70px;
     width: 75px;
-    margin-left: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .logo > img {
@@ -139,20 +155,25 @@ footer {
 }
 .search-btn:hover {
     /* color: rgba(255,255,255,1); */
-    color: hotpink;
+    color: rgb(231, 188, 255);
     background: rgb(30, 205, 151);
   }
 
 /* unvisited link */
 a:link {
-    color: rgb(9, 52, 33);
+    color: rgb(251,249, 91);
     text-decoration: none;
 
   }
 
+/* visited link */
+a:visited {
+    color: rgb(251,249, 91);
+  }
+
 /* mouse over link */
 a:hover {
-    color: hotpink;
+    color: rgb(231, 188, 255);;
     text-decoration: none;
     /* background-color: yellow; */
   }
@@ -169,9 +190,8 @@ a:hover {
     .card-title, .js-card-title {
         width: 100%;
         padding: 20px 50px 20px 50px;
-
-
     }
+
 }
 
 

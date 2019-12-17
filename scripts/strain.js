@@ -1,7 +1,8 @@
 let STRAINNAME;
 let STRAINID;
 let STRAINEFFECTS;
-let LOCATION = `30307`;
+let LOCATION="30307";
+let DOGCALLS;
 let cardDeck = document.querySelector(".card-z");
 function strainRaceURLGen(race){
     return `https://strainapi.evanbusse.com/${strainAPIKey}/strains/search/race/${race}`;
@@ -16,7 +17,7 @@ function randomDogURLGenerator(dogBreed){
 }
 
 function formBuilder(){
-    let thingy = document.querySelector(".zipcode-button");
+    let domArr = [];
 
     let form = document.createElement("form");
     form.action="";
@@ -31,20 +32,28 @@ function formBuilder(){
     let input2 = document.createElement("input");
     input2.className = "js-search-btn";
     input2.type = "submit";
- 
-    let reset = document.createElement("reset");
-    reset.className = "js-search-btn";
-    reset.type = "reset";
+
+    let reset = document.createElement("button");
+    reset.className = "js-reset-btn";
+    reset.textContent = "reset";
+    reset.addEventListener("click", resetPage);
 
     form.appendChild(input1);
     form.appendChild(input2);
-    form.addEventListener("submit", e => LOCATION = e.target.elements[0].value);
+    form.addEventListener("submit", e =>{
+        e.preventDefault();
+        LOCATION = e.target.elements[0].value;
+        console.log(LOCATION);
+        if(LOCATION.length != 5){
+            LOCATION = "30307";
+            clearBarDeck();
+        }
+    });
 
-    thingy.appendChild(form);
-    thingy.appendChild(reset);
+    domArr.push(form);
+    domArr.push(reset);
+    return domArr;
 }
-
-
 
 function lookInside(o){
     console.log(o);
@@ -54,6 +63,18 @@ function lookInside(o){
 function clearCardDeck(passThru){
     cardDeck.textContent = "";
     return passThru;
+}
+
+function clearBarDeck(){
+    let textToReset = document.querySelector(".js-search-input");
+    console.log(textToReset);
+    textToReset.value = "";
+    LOCATION = "30307";
+}
+
+function setBarDeck(barArr){
+    let barDeck = document.querySelector(".zipcode-button");
+    barArr.map(obj => barDeck.appendChild(obj));
 }
 
 function appendCardToDeck(card){
@@ -197,15 +218,39 @@ function strainToBreedConverter(strainID = STRAINID){
 
 function createNewDog(){
     console.log("createNewDog");
-    requestData(randomDogURLGenerator(strainToBreedConverter()))
-        .then(r =>{
-            if(r.animals.length == 0){
-                createNewDog();
-            } else{
-                buildDogDOM(selectRandDog(r));
-            }
-        })
+        requestData(randomDogURLGenerator(strainToBreedConverter()))
+            .then(r =>{
+                if(DOGCALLS > 3){
+                    buildNoDogDOM();
+                } else if(!r.animals){
+                    buildNoDogDOM();
+                } else if(r.animals.length == 0){
+                    DOGCALLS +=1;
+                    createNewDog();
+                } else{
+                    buildDogDOM(selectRandDog(r));
+                }
+            })
 }    
+
+function buildNoDogDOM(){
+    DOGCALLS =0;
+    let card = document.createElement('div');
+    card.className = "js-card-title";
+    
+    let h5 = document.createElement("h5");
+    h5.className = "js-card-title";
+    h5.textContent = "We are so sorry but we can't find the right dog for you...";
+
+    let img = document.createElement("img");
+    img.src = "images/weed-eyes.png";
+    img.className = "js-card-img-top";
+    img.alt = "weed dog.";
+
+    card.appendChild(h5);
+    card.appendChild(img);
+    cardDeck.appendChild(card);
+}
 
 
 function selectRandDog(dogArr){
@@ -217,6 +262,7 @@ function selectRandDog(dogArr){
 }
 
 function buildDogDOM(dogCard){
+    DOGCALLS =0;
     let card = document.createElement('div');
     card.className = "js-card-title";
     
@@ -225,7 +271,12 @@ function buildDogDOM(dogCard){
     h5.textContent = "Your new Best Friend!";
 
     let img = document.createElement("img");
-    img.src = dogCard.photos[0].full;
+    if(!dogCard.photos[0]){
+        img.src = "images/weed-eyes.png";
+    }else{
+        img.src = dogCard.photos[0].full;
+    }
+    
     img.className = "js-card-img-top";
     img.alt = "your new best friend!";
 
@@ -253,13 +304,19 @@ function buildDogDOM(dogCard){
 }
 
 function main(){
-    clearCardDeck();
-    // createZipBar();
+    DOGCALLS = 0;
+    setBarDeck(formBarArr);
     raceDomArr.map(appendCardToDeck);
 }
-getToken();
-formBuilder();
 
+function resetPage(){
+    clearCardDeck();
+    clearBarDeck();
+    main();
+}
+
+getToken();
+const formBarArr = formBuilder();
 const raceDomArr = createRaceDOMs();
 
 window.addEventListener('DOMContentLoaded', main);

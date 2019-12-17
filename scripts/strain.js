@@ -164,7 +164,7 @@ function createSingleStrainDOM(infoArr){
     let p3 = document.createElement('p');
     p3.className = "js-card-text";
     STRAINEFFECTS = infoArr[1];
-    p3.textContent = effectText(STRAINEFFECTS);
+    p3.innerHTML = effectText(STRAINEFFECTS);
     
     let p4 = document.createElement('p');
     p4.className = "js-card-text";
@@ -192,7 +192,7 @@ function effectText(effectObj){
     for (let effect of effectObj.medical){
         medEffects = medEffects + effect + " ";
     }
-    let effectString = `Effects \n Positive : \n ${posiEffects} \n Negative: \n ${negEffects} \n Medical:\n ${medEffects}`;
+    let effectString = `Effects <br> Positive: <br> ${posiEffects} <br> Negative: <br> ${negEffects} <br> Medical:<br> ${medEffects}`;
 
     return effectString;
 }

@@ -27,17 +27,16 @@ function formBuilder(){
     input1.className = "js-search-input";
     input1.type = "text";
     //input1.name = "search";
-    input1.placeholder = "zip code plz";
+    input1.placeholder = "Enter your Zip Code";
 
     let input2 = document.createElement("input");
-    input2.localName = "js-search-btn";
+    input2.className = "js-search-btn";
     input2.type = "submit";
 
     let reset = document.createElement("button");
     reset.className = "js-reset-btn";
     reset.textContent = "reset";
     reset.addEventListener("click", resetPage);
-
 
     form.appendChild(input1);
     form.appendChild(input2);

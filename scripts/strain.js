@@ -6,7 +6,7 @@ let LOCATION="30307";
 let DOGCALLS;
 let BREEDARRAY;
 let cardDeck = document.querySelector(".card-z");
-
+let barDeck = document.querySelector(".zipcode-button");
 
 //API URL creation functions.
 function strainRaceURLGen(race){
@@ -59,36 +59,29 @@ function formBuilder(){
     return domArr;
 }
 
+//resetPage is triggered by an event listener on the reset button, it clears the HTML DIV containers, and runs main to restart from scratch
+function resetPage(){
+    clearCardDeck();
+    clearBarDeck();
+    main();
+}
+
 function lookInside(o){  //function to see what is being passed thru in a .then chain
-    console.log(o);
-    return o;
+        return o;
 }
 
 function clearCardDeck(passThru){  //empties the primary container, so that it can be refilled.
     cardDeck.textContent = "";
     return passThru;
 }
-
+//clearBarDeck() resets zip bar to defaults
 function clearBarDeck(){
     let textToReset = document.querySelector(".js-search-input");
-    console.log(textToReset);
-    textToReset.value = "";
+        textToReset.value = "";
     LOCATION = "30307";
 }
 
-function setBarDeck(barArr){
-    let barDeck = document.querySelector(".zipcode-button");
-    barArr.map(obj => barDeck.appendChild(obj));
-}
-
-function appendCardToDeck(card){
-    cardDeck.appendChild(card);
-}
-
-function appendFinalCards(){
-    CARDARR.map(card => cardDeck.appendChild(card));
-}
-
+//creaeteRaceDOMs() creates a DOM element for each species, appends them to an array, and returns that array
 function createRaceDOMs(){
     let raceDomArr = [];
     let raceArr = ["Indica", "Sativa", "Hybrid"];
@@ -114,11 +107,9 @@ function createRaceDOMs(){
     return raceDomArr;
 }
 
+//function called by event listener for the species cards, and triggers the beginning of the API call .then chain.
 function raceClick(event){
-    // to add begginer, intermediate, and expert modes, CHANGE THIS FUNCTION!!!!
-    // 3 if statements for each different difficulty.
-    let domArr=[];
-    fetch(strainRaceURLGen(event.currentTarget.race))
+   fetch(strainRaceURLGen(event.currentTarget.race))
         .then(x => x.json())
         .then(selectRandomStrain)
         .then(getStrainInfo)
@@ -128,18 +119,21 @@ function raceClick(event){
         .then(createNewDog)
 }
 
+// selectRandomStrain(strainArr) takes in an array of strains from an API call, randomly selects one, sets global STRAINNAME variable, and returns the id of selected strain.
 function selectRandomStrain(strainArr){
     let rando = Math.floor(Math.random() * strainArr.length);
     STRAINNAME = strainArr[rando].name;
     return strainArr[rando].id;
 }
 
+//getStrainInfo(strainID) takes a strain ID, creates an array of API URLs, and asyncronously calls them all, and returns an array of promises.
 async function getStrainInfo(strainID){
     let URLArr = [strainURLGen(strainID,"desc"),strainURLGen(strainID,"effects"),strainURLGen(strainID,"flavors")]
     let values = await Promise.all(URLArr.map(url => fetch(url).then(r => r.json())));
     return values;
 }
 
+//createSingleStrainDOM(infoArr) takes an array of promises, creates a DOM card for a particular strain, and appends it to card stack.
 function createSingleStrainDOM(infoArr){
     let card = document.createElement('div');
     card.className = "js-card-title";
@@ -179,6 +173,7 @@ function createSingleStrainDOM(infoArr){
     cardDeck.appendChild(card);
 }
 
+//effectText returns a formatted string for the effects, for an HTML DOM element
 function effectText(effectObj){
     let posiEffects = "";
     let negEffects = "";
@@ -193,10 +188,11 @@ function effectText(effectObj){
         medEffects = medEffects + effect + " ";
     }
     let effectString = `Effects <br> Positive: <br> ${posiEffects} <br> Negative: <br> ${negEffects} <br> Medical:<br> ${medEffects}`;
-
+    // let effectString = "Effects \n Positive: \n" + posiEffects + "\n Negative \n" + negEffects + "\n Medical \n"+ medEffects;
     return effectString;
 }
 
+//flavorText returns a formatted string for the flavors, for an HTML DOM element
 function flavorText(flavorObj){
     flavors = "";
     for (let flavor of flavorObj){
@@ -206,34 +202,28 @@ function flavorText(flavorObj){
     return flavorString;
 }
 
-function getStrain(strainID){
-    fetch(strainURLGen(strainID))
-        .then(p => p.json())
-        .then(lookInside)
-        .then(strainToBreedConverter)
-}
 
-
+//buildGoodDogArr takes in an Object, of strain effects, and generates an array of dog breeds related to said effects
 function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     let effArr = [];
     let newDogArr = [];
     let dogHisto = {};
-    let dogArr = Object.keys(dogChars);
+    let dogArr = Object.keys(dogChars); //creates array of dog breeds
+    //breaks down effect object into an array of effects
     for (let effCat of Object.keys(strainEffects)){
         for (let eff of strainEffects[effCat]){
             effArr.push(eff);
         }
     }
-
+    //check to see if API returned no effects, and returns full array of dog breeds if no effects found
     if(effArr.length == 0){
         return dogArr;
     }
 
+    //creates histogram with dog breeds as keys, and the number of effects from given strain that matches as values.
     for (let dog of dogArr){
-        console.log(dog);
-        for (let eff of effArr){
-            console.log(dogChars[dog]);
-            if(dogChars[dog].includes(eff)){
+                for (let eff of effArr){
+                        if(dogChars[dog].includes(eff)){
                 if(dog in Object.keys(dogHisto)){
                     dogHisto[dog] += 1;
                 } else{
@@ -242,35 +232,36 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
             }
         }
     }
-    console.log(dogHisto);
+    
+    //creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
     newDogArr = Object.keys(dogHisto);
     BREEDARRAY=newDogArr;
     return newDogArr;
 }
-
-function strainToBreedConverter(strainEffects = STRAINEFFECTS){
-    let dogBreed = BREEDARRAY[Math.floor(Math.random() * BREEDARRAY.length)];
-
-    return dogBreed;
+//randomBreedSelector takes in an array of dog breeds(or the default global array BREEDARRAY) and returns a randomly selected one.
+function randomBreedSelector(breedArray = BREEDARRAY){
+    return breedArray[Math.floor(Math.random() * breedArray.length)];
 }
 
+//createNewDog fetches an array of dogs of randomly selected breed, and then calls a DOM builder.
 function createNewDog(){
-    console.log("createNewDog");
-        requestData(randomDogURLGenerator(strainToBreedConverter()))
+            requestData(randomDogURLGenerator(randomBreedSelector())) //requestData takes an API URL, adds token headers, and fetches.
             .then(r =>{
-                if(DOGCALLS > 3){
+                if(DOGCALLS > 3){//if more than 3 API calls return no dogs, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();
-                } else if(!r.animals){
+                } else if(!r.animals){ //if API call FAILS, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();
-                } else if(r.animals.length == 0){
+                } else if(r.animals.length == 0){ //if API call returns no dogs, increases DOGCALLS tally, and recursively calls createNewDog.
                     DOGCALLS +=1;
                     createNewDog();
-                } else{
+                } else{ //if nothing goes wrong, DOM builder for randomly selected dog in API array.
                     buildDogDOM(selectRandDog(r));
                 }
-            })
+            }
+        )
 }    
 
+//buildNoDogDOM creates a DOM card if no suitable dogs can be found, and appends it to the stack
 function buildNoDogDOM(){
     DOGCALLS =0;
     let card = document.createElement('div');
@@ -290,15 +281,13 @@ function buildNoDogDOM(){
     cardDeck.appendChild(card);
 }
 
-
+//selectRandDog takes in an array of Dog objects, randomly selects one of them to use, and returns that dog Object.
 function selectRandDog(dogArr){
-    console.log('selectRandDog');
-    console.log(dogArr);
     let dog = dogArr.animals[Math.floor(Math.random() * dogArr.animals.length)];
-    console.log(dog);
     return dog;
 }
 
+//buildDogDOM takes in a single dog Object, creates a DOM card for it, and appends it to card stack
 function buildDogDOM(dogCard){
     DOGCALLS =0;
     let card = document.createElement('div');
@@ -320,21 +309,19 @@ function buildDogDOM(dogCard){
     let p1 = document.createElement('p');
     p1.className = "js-card-text";
     p1.textContent = dogCard.name;
-    console.log(p1);
-
+    
     let p2 = document.createElement('p');
     p2.className = "js-card-text";
     p2.textContent = dogCard.breeds.primary;
-    console.log(p2);
-
+    
     let p3 = document.createElement('p');
     p3.className = "js-card-text";
     p3.textContent = dogCard.description;
-    console.log(p3);
-
+    
     let a = document.createElement('a');
     a.className = "js-adopt-button";
     a.href = dogCard.url;
+    a.target = "_blank";
     a.textContent = `adopt me!!`;
     
     card.appendChild(h5);
@@ -346,20 +333,18 @@ function buildDogDOM(dogCard){
     cardDeck.appendChild(card);
 }
 
+//main runs the primary build of the main page, and sets/resets a counter.
 function main(){
     DOGCALLS = 0;
-    setBarDeck(formBarArr);
-    raceDomArr.map(appendCardToDeck);
+    barArr.map(obj => barDeck.appendChild(obj));
+    raceDomArr.map(card => cardDeck.appendChild(card));
 }
-
-function resetPage(){
-    clearCardDeck();
-    clearBarDeck();
-    main();
-}
-
+//getToken creates token for petfinder API
 getToken();
-const formBarArr = formBuilder();
+
+//creates main landing page DOM elements, and stores them in global variable (to avoid rebuilding them on reset)
+const barArr = formBuilder();
 const raceDomArr = createRaceDOMs();
 
+//waits for HTML page to finish loading, and then runs main, to build the landing page.
 window.addEventListener('DOMContentLoaded', main);

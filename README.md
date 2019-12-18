@@ -8,62 +8,53 @@
 ## Project Description  
 Adopt and Chill solves the serious problem of overcrowded animal shelters in a silly way. The user enters a zip code, clicks on an image representing their preferred marijuana species (Indica, Sativa, or Hybrid), and receives two recommendations - a marijuana strain and an available shelter dog with similar characteristics. 
 
-## main screenshot here 
 
-## high level description or diagram of how the app works 
-## more screenshots to explain code, etc 
+![diagram](https://user-images.githubusercontent.com/56937602/71096338-18906900-217c-11ea-8f25-ad548be69500.jpg)
 
+#### USER INPUT 
 
-<!-- *first function -> build dom elements for zipcode form and reset button. 
-* if whatever entered is not 5 digits, ignores and sets location to a default value. 
-* put dom elements into array, return array. global variable so you don't have to create elements 
-everytime -> not heavy on browser. 
-
-reset page -> clears div containers that are hardcoded into html, rebuilds the main page 
-
-*second function -> creates a dom element for each species, appends them to an array
-three cards for each species, each pass creates dom element, appends to a local array, then retruns array 
-to be stored in a global variable 
-
-*main populates landing page, attaches dom elements to landing page 
-
-*get strain -> take in strain id number, builds an array of urls to call to the api, three api calls 
-for 3 species
-asynchronously iterates through that array and does and api call for each, pauses until they all return, 
-return an array of promises. 
-
-*raceClick 
-
-*buildGoodDogArray creates an array of dog breeds (bridge between two APIS)
-creates an array of all of dogs with most attributes in common with strains of weed and sets that to global variable <breedArray>
-
-*createNewDog fetches an array of dogs and randomly selected breeds
-
-selectRandDOg takes in an array, randomly selects a dog from array of adoptable dogs from the breed that is 
-associated with the selected strain. 
-
-once user selects a dog, pass that dogs info to buildDogDom which builds info card about new dog and appends 
-to main body of the site  -->
+![userinput](https://user-images.githubusercontent.com/56937602/71096746-da477980-217c-11ea-907a-bb0478c66541.png)
 
 
+![raceclick](https://user-images.githubusercontent.com/56937602/71096972-40340100-217d-11ea-9eaa-d33e5d2cbf52.png)
 
 
+First, we create some clickable elements to populate the landing page. Once the user clicks, the <raceClick> function triggers the fetch.then chain.  
+
+#### STRAIN API 
+
+![raceclick] (https://user-images.githubusercontent.com/56937602/71097302-cc462880-217d-11ea-9946-89487c807d0e.png)
 
 
+<getStrainInfo> is an asynchronous function that takes in a marijuana strain ID number from the Strain API and builds an array of URLs to call to the API. The function asynchronously iterates through that array and does an API call for each, pauses until all three API calls return, then returns an array of promises. 
+
+#### BRIDGE FUNCTIONS
+
+![buildgooddog] (https://user-images.githubusercontent.com/56937602/71099273-049b3600-2181-11ea-9bc4-689a24a38a13.png)
 
 
+<buildGoodDog> acts as a bridge between the two APIs. The function creates an array of all the dogs with the most attributes in common with the selected strain of marijuana, then sets that to the global variable <BREEDARRAY>.
 
+#### PETFINDER API
+
+![createnewdog] (https://user-images.githubusercontent.com/56937602/71097867-bf760480-217e-11ea-92a8-26d76b4c17a9.png)
+
+
+<createNewDog> fetches an array of adoptable dogs of the selected breed and then calls the DOM element builder for that dog. 
+
+#### SCREEN OUTPUT 
+
+![video] (https://www.youtube.com/watch?v=I0PX4Sw4m1M&feature=youtu.be)
 
 ### APIs USED 
-* 
-* 
+* Petfinder API - https://www.petfinder.com/developers/api-docs
+* The Strain Marijuana strains API - https://strains.evanbusse.com/
 
 ### What's Next
-We would continue to add to the dog array 
+* Continue to add characteristics to the dog array to make the app more robust. 
+* When you select a marijuana species, instead of randomly picking one, we pick 12 for you to pick from. 
+* Add CSS hover animations on dog logos for better user experience. 
+* Add vendor pre-fixes to optimize for more platforms/ devices. 
 
 
-### Acknowledgements 
-* Jonathan went on some serious CSS journeys - thank you!
-* 
-* 
 

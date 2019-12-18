@@ -234,8 +234,8 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
         }
     }
 //creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
-    let sortedHisto = Object.entries(dogHisto).filter(x => x[1] >= most - 1);
-    newDogArr = sortedHisto.map(x => x[0]);
+    newDogArr = Object.entries(dogHisto).filter(x => x[1] >= most - 1).map(x => x[0]);
+    console.log(newDogArr);
     BREEDARRAY=newDogArr;
     return newDogArr;
 }

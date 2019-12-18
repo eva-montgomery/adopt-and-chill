@@ -4,7 +4,7 @@ let STRAINNAME;
 let STRAINEFFECTS;
 let LOCATION="30307";
 let DOGCALLS;
-let BREEDARRAY;
+let BREEDARRAY=[];
 let cardDeck = document.querySelector(".card-z");
 let barDeck = document.querySelector(".zipcode-button");
 
@@ -204,7 +204,8 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     let effArr = [];
     let newDogArr = [];
     let dogHisto = {};
-    let dogArr = Object.keys(dogChars); //creates array of dog breeds
+    let dogArr = Object.keys(dogChars);
+    let most = 0; //creates array of dog breeds
     //breaks down effect object into an array of effects
     for (let effCat of Object.keys(strainEffects)){
         for (let eff of strainEffects[effCat]){
@@ -213,24 +214,27 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     }
     //check to see if API returned no effects, and returns full array of dog breeds if no effects found
     if(effArr.length == 0){
+        BREEDARRAY=dogArr;
         return dogArr;
     }
-
     //creates histogram with dog breeds as keys, and the number of effects from given strain that matches as values.
     for (let dog of dogArr){
                 for (let eff of effArr){
                         if(dogChars[dog].includes(eff)){
-                if(dog in Object.keys(dogHisto)){
-                    dogHisto[dog] += 1;
-                } else{
-                    dogHisto[dog] = 1;
-                }
+                            if(Object.keys(dogHisto).includes(dog)){
+                                dogHisto[dog] += 1;    
+                            } else {
+                                dogHisto[dog] = 1;
+
+                            }
+                        if(dogHisto[dog] > most){
+                            most = dogHisto[dog]
+                        }
             }
         }
     }
-    
-    //creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
-    newDogArr = Object.keys(dogHisto);
+//creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
+    newDogArr = Object.entries(dogHisto).filter(x => x[1] >= most - 1).map(x => x[0]);
     BREEDARRAY=newDogArr;
     return newDogArr;
 }
@@ -244,7 +248,7 @@ function randomBreedSelector(breedArray = BREEDARRAY){
 function createNewDog(){
             requestData(DogURLGenerator(randomBreedSelector())) //requestData takes an API URL, adds token headers, and fetches.
             .then(r =>{
-                if(DOGCALLS > 4){//if more than 3 API calls return no dogs, calls buildNoDogDOM to break the users heart
+                if(DOGCALLS > 4){//if more than 4 API calls return no dogs, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();
                 } else if(!r.animals){ //if API call FAILS, calls buildNoDogDOM to break the users heart
                     buildNoDogDOM();

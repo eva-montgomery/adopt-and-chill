@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box; 
-    /* border: 1px solid red;    */
 }
 
 html, body {
@@ -23,9 +22,6 @@ form {
 footer {
     display: flex;
     font-size: 14px;
-    /* bottom: 0; */
-     /* width: 100%; */
-    /* height: 200px; */
     padding: 20px 0px 30px 0px;
     background-color:rgb(9, 52, 33);
     color: rgb(251, 239, 91);
@@ -46,27 +42,13 @@ a:visited {
 a:hover {
     color: rgb(231, 188, 255);;
     text-decoration: none;
-    /* background-color: yellow; */
   }
 
-/* .big-container {
-    min-height: 100%;
-    width: 100%;
-} */
-
 .contents-container {
-    /* display: flex;
-    flex-direction: column; */
     flex-grow: 1;
     min-height: 100%;
 }
 
-.card-img-top, .js-card-img-top {
-    /* display: flex; */
-    display: inline-block;
-    width: 250px;
-    margin-top: 20px;
-}
 
 .card-z {
     display: flex;
@@ -77,20 +59,22 @@ a:hover {
     margin: 0 auto;
     width: 300px;
     padding: 50px 0px 0px 0px;
-    background-color: rgb(203, 237, 208);
-    
+    background-color: rgb(203, 237, 208);  
 }
 
 .card, .js-card {
     /* centers as a child of card-z */
     display: inline-block !important;
     width: 300px;
-    /* margin-left: 234px !important;
-    margin-right: 234px !important; */
     margin-bottom: 20px !important;
     background-color: rgb(203, 237, 208) !important;
     border: 0px !important;
-    /* padding: 50px 50px 50px 50px; */
+}
+
+.card-img-top, .js-card-img-top {
+    display: inline-block;
+    width: 250px;
+    margin-top: 20px;
 }
 
 .card-title, .js-card-title {
@@ -99,8 +83,6 @@ a:hover {
     margin-bottom: 50px;
 }
 
-
-/* parent */
 .navbar-expand {
     display: flex;
     padding: 10px 0;
@@ -109,11 +91,6 @@ a:hover {
     background-color:rgb(9, 52, 33);
 }
 
-/* .navbar-expand > * {
-    border: 1px solid red;
-} */
-
-/* child */
 .navbar-brand {
     font-family: 'Yatra One', cursive;
     display: inline-block !important;
@@ -122,13 +99,10 @@ a:hover {
     color: rgb(251, 239, 91);
     font-size: 32px;
     display: inline-block !important;
-
 } 
 
 .logo {
     display: flex;
-    /* display: inline-block !important; */
-    /* flex-direction: row; */
     vertical-align: middle;
     height: 70px;
     width: 75px;
@@ -141,7 +115,6 @@ a:hover {
 }
 
 .user-input {
-    /* padding: 50px 100px 50px 100px; */
     margin-left: 250px;
     margin-top: 50px;
 }
@@ -175,50 +148,40 @@ a:hover {
     display: flex;
     background-color: rgb(203, 237, 208);
     justify-content: center;
-    /* border: 1px solid red; */
-    /* flex-wrap: nowrap; */
 }
 
 .js-search-input {
-    /* justify-content: center; */
     display: flex;
-    /* padding-top: 5px;
-    padding-bottom: 5px; */
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 30px;
     border-radius: 25px;
-    margin-left: 20px;
-    /* border: 1px solid red; */
 }
 
 .js-search-btn {
     border-radius: 25px;
     display: flex;
-    /* justify-content: center; */
     color: blueviolet; 
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
     background: rgba(33,224,163,1);
-    /* border: 1px solid red; */
 }
 
 .js-search-btn:hover {
-    /* color: rgba(255,255,255,1); */
     color: hotpink;
     background: rgb(30, 205, 151);
 }
 
 .js-reset-btn {
-    border-radius: 25px;
     display: flex;
-    color: blueviolet; 
+    align-content: right;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: 30px;
+    border-radius: 25px;
+    color: blueviolet; 
     background: rgba(33,224,163,1);
-    /* border: 1px solid red; */
-    align-content: right;
 }
 
 .js-reset-btn:hover {
@@ -226,33 +189,15 @@ a:hover {
     background: rgb(30, 205, 151);
 }
 
-/* .form-container {
+.search-btn, .js-zip-button {
+    padding: 5px;
     justify-content: center;
-    display: flex;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    box-shadow: burlywood;
-    /* border: 1px solid red */
+    border-radius: 25px;
+    border: 2px solid rgba(33,224,163,1);
+    background: rgba(33,224,163,1);
+    color: blueviolet;
 }
-.search-btn, .js-adopt-button, .js-zip-button {
-  border-radius: 25px;
-  border: 2px solid rgba(33,224,163,1);
-  background: rgba(33,224,163,1);
-  padding: 5px;
-  justify-content: center;
-  color: blueviolet;
   
-} */
- /* .js-search-btn:hover {
-    color: rgba(255,255,255,1); 
-    color: hotpink;
-    background: rgb(30, 205, 151);
-  }  */
-
-
-
 @media screen and (min-width: 769px) {
     .card-z {
         display: flex;
@@ -273,15 +218,14 @@ a:hover {
     .card-z {
         width: 900px;
     }
-    .zipcode-button {
+
+/*    .zipcode-button {
         max-width: 1000px;
         margin-left: 300px;
         margin-right: 300px;
         
     } 
 
-
-  
-
+*/
 }
   

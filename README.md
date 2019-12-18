@@ -19,32 +19,31 @@ Adopt and Chill solves the serious problem of overcrowded animal shelters in a s
 ![raceclick](https://user-images.githubusercontent.com/56937602/71096972-40340100-217d-11ea-9eaa-d33e5d2cbf52.png)
 
 
-First, we create some clickable elements to populate the landing page. Once the user clicks, the <raceClick> function triggers the fetch.then chain.  
+First, we create some clickable elements to populate the landing page. Once the user clicks, the `raceClick` function triggers the fetch.then chain.  
 
 #### STRAIN API 
 
-![raceclick] (https://user-images.githubusercontent.com/56937602/71097302-cc462880-217d-11ea-9946-89487c807d0e.png)
+![straininfo](https://user-images.githubusercontent.com/56937602/71097302-cc462880-217d-11ea-9946-89487c807d0e.png)
 
 
-<getStrainInfo> is an asynchronous function that takes in a marijuana strain ID number from the Strain API and builds an array of URLs to call to the API. The function asynchronously iterates through that array and does an API call for each, pauses until all three API calls return, then returns an array of promises. 
+`getStrainInfo` is an asynchronous function that takes in a marijuana strain ID number from the Strain API and builds an array of URLs to call to the API. The function asynchronously iterates through that array and does an API call for each, pauses until all three API calls return, then returns an array of promises. 
 
 #### BRIDGE FUNCTIONS
 
-![buildgooddog] (https://user-images.githubusercontent.com/56937602/71099273-049b3600-2181-11ea-9bc4-689a24a38a13.png)
+![buildgooddog](https://user-images.githubusercontent.com/56937602/71102166-00bde280-2186-11ea-8a96-ffbe22bf9d5d.png)
 
-
-<buildGoodDog> acts as a bridge between the two APIs. The function creates an array of all the dogs with the most attributes in common with the selected strain of marijuana, then sets that to the global variable <BREEDARRAY>.
+`buildGoodDog` acts as a bridge between the two APIs. The function creates an array of all the dogs with the most attributes in common with the selected strain of marijuana, then sets that to the global variable `BREEDARRAY`.
 
 #### PETFINDER API
 
-![createnewdog] (https://user-images.githubusercontent.com/56937602/71097867-bf760480-217e-11ea-92a8-26d76b4c17a9.png)
+![createnewdog](https://user-images.githubusercontent.com/56937602/71097867-bf760480-217e-11ea-92a8-26d76b4c17a9.png)
 
 
-<createNewDog> fetches an array of adoptable dogs of the selected breed and then calls the DOM element builder for that dog. 
+`createNewDog` fetches an array of adoptable dogs of the selected breed, randomly selects one dog of that breed, then calls the DOM element builder for that dog. 
 
 #### SCREEN OUTPUT 
 
-![video] (https://www.youtube.com/watch?v=I0PX4Sw4m1M&feature=youtu.be)
+![video](https://gifs.com/gif/adopt-and-chill-demo-video-jZBZE4)
 
 ### APIs USED 
 * Petfinder API - https://www.petfinder.com/developers/api-docs

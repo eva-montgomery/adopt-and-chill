@@ -224,16 +224,13 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
                             if(Object.keys(dogHisto).includes(dog)){
                                 dogHisto[dog] += 1;    
                             } else {
-                                dogHisto[dog] = 1;
-                                
+                                dogHisto[dog] = 1;   
                             }
             }
         }
     }
-    
     //creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
     newDogArr = Object.keys(dogHisto);
-    console.log(dogHisto);
     BREEDARRAY=newDogArr;
     return newDogArr;
 }

@@ -204,7 +204,8 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
     let effArr = [];
     let newDogArr = [];
     let dogHisto = {};
-    let dogArr = Object.keys(dogChars); //creates array of dog breeds
+    let dogArr = Object.keys(dogChars);
+    let most = 0; //creates array of dog breeds
     //breaks down effect object into an array of effects
     for (let effCat of Object.keys(strainEffects)){
         for (let eff of strainEffects[effCat]){
@@ -216,7 +217,6 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
         BREEDARRAY=dogArr;
         return dogArr;
     }
-    console.log(effArr);
     //creates histogram with dog breeds as keys, and the number of effects from given strain that matches as values.
     for (let dog of dogArr){
                 for (let eff of effArr){
@@ -224,13 +224,18 @@ function buildGoodDogArr(strainEffects = STRAINEFFECTS){
                             if(Object.keys(dogHisto).includes(dog)){
                                 dogHisto[dog] += 1;    
                             } else {
-                                dogHisto[dog] = 1;   
+                                dogHisto[dog] = 1;
+
                             }
+                        if(dogHisto[dog] > most){
+                            most = dogHisto[dog]
+                        }
             }
         }
     }
-    //creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
-    newDogArr = Object.keys(dogHisto);
+//creates array of keys from dogHisto, sets global BREEDARRAY to that array, and returns that array (just for funsies)
+    let sortedHisto = Object.entries(dogHisto).filter(x => x[1] >= most - 1);
+    newDogArr = sortedHisto.map(x => x[0]);
     BREEDARRAY=newDogArr;
     return newDogArr;
 }

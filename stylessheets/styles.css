@@ -8,6 +8,8 @@ html, body {
     flex-direction: column;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
     min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -93,6 +95,7 @@ a:hover {
 
 .navbar-brand {
     font-family: 'Yatra One', cursive;
+    font-style: normal;
     display: inline-block !important;
     margin: 0 auto;
     vertical-align: middle;

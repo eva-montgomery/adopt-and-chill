@@ -137,7 +137,7 @@ function createSingleStrainDOM(infoArr){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your new Strain!";
+    h5.textContent = "Your Bud!";
 
     let img = document.createElement("img");
     img.src = "images/noun_Marijuana_2183514.png";
@@ -296,7 +296,7 @@ function buildDogDOM(dogCard){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your new Best Friend!";
+    h5.textContent = "Your Best Bud!";
 
     let img = document.createElement("img");
     if(!dogCard.photos[0]){ //if petfinder API doesn't have any photos for dog, use default

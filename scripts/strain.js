@@ -7,6 +7,8 @@ let DOGCALLS;
 let BREEDARRAY=[];
 let cardDeck = document.querySelector(".card-z");
 let barDeck = document.querySelector(".zipcode-button");
+//change mode to chane use modes. mode = 1 for random strain, mode = 2 for list of a few random strains, mode = 3 for every strain of selected species.
+let mode = 1;
 
 //API URL creation functions.
 function strainRaceURLGen(race){
@@ -106,16 +108,99 @@ function createRaceDOMs(){
 
 //function called by event listener for the species cards, and triggers the beginning of the API call .then chain.
 function raceClick(event){
+    if (mode == 1){
+        clearCardDeck();
+        cardDeck.appendChild(loadingDom);
+        fetch(strainRaceURLGen(event.currentTarget.race))
+            .then(x => x.json())
+            .then(selectRandomStrain)
+            .then(getStrainInfo)
+            .then(createSingleStrainDOM)
+            .then(buildGoodDogArr)
+            .then(createNewDog)
+    } else if (mode == 2){
+        clearCardDeck();
+        cardDeck.appendChild(loadingDom);
+        fetch(strainRaceURLGen(event.currentTarget.race))
+            .then(x => x.json())
+            .then(makeSomeStrains)
+    } else if (mode == 3){
+        clearCardDeck();
+        cardDeck.appendChild(loadingDom);
+        fetch(strainRaceURLGen(event.currentTarget.race))
+            .then(x => x.json())
+            .then(makeAllStrains)
+
+    }
+
+}
+
+function makeAllStrains(strainArr){
+    let strainDomArr = [];
+    strainArr.map(newStrain =>{
+        
+        let card = document.createElement('div');
+        card.className = "js-card-title";
+        card.strainID = newStrain.id;
+        card.strainName = newStrain.name;
+
+        let img = document.createElement("img");
+        img.src = "images/noun_Marijuana_2183514.png";
+        img.className = "js-card-img-top";
+        img.alt = "weed leaf";
+
+        let p1 = document.createElement('p');
+        p1.className = "js-card-text";
+        p1.textContent = newStrain.name;
+        
+        card.appendChild(img);
+        card.appendChild(p1);
+        card.addEventListener('click', strainClick);
+        strainDomArr.push(card);
+    })
+    strainDomArr.map(x => cardDeck.appendChild(x));
+}
+
+function makeSomeStrains(strainArr){
+        let numStrains = 12;
+        let strainDomArr = [];
+        for (let x = 1; x < numStrains; x++){
+            let rando = Math.floor(Math.random() * strainArr.length);
+            let newStrain = strainArr[rando];
+            strainArr.splice(rando, 1);
+            
+            let card = document.createElement('div');
+            card.className = "js-card-title";
+            card.strainID = newStrain.id;
+            card.strainName = newStrain.name;
+    
+            let img = document.createElement("img");
+            img.src = "images/noun_Marijuana_2183514.png";
+            img.className = "js-card-img-top";
+            img.alt = "weed leaf";
+
+            let p1 = document.createElement('p');
+            p1.className = "js-card-text";
+            p1.textContent = newStrain.name;
+            
+            card.appendChild(img);
+            card.appendChild(p1);
+            card.addEventListener('click', strainClick);
+            strainDomArr.push(card);
+        }
+        strainDomArr.map(x => cardDeck.appendChild(x));
+}
+
+function strainClick(event){
     clearCardDeck();
     cardDeck.appendChild(loadingDom);
-    fetch(strainRaceURLGen(event.currentTarget.race))
-        .then(x => x.json())
-        .then(selectRandomStrain)
-        .then(getStrainInfo)
+    STRAINNAME = event.currentTarget.strainName;
+    getStrainInfo(event.currentTarget.strainID)
         .then(createSingleStrainDOM)
         .then(buildGoodDogArr)
         .then(createNewDog)
 }
+
 
 //resetPage is triggered by an event listener on the reset button, it clears the HTML DIV containers, and runs main to restart from scratch
 function resetPage(){

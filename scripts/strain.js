@@ -41,7 +41,7 @@ function formBuilder(){
     input2.type = "submit";
 
     let reset = document.createElement("button");
-    reset.className = "js-reset-btn";
+    reset.className = "js-reset-btn reset-btn";
     reset.textContent = "Reset";
     reset.addEventListener("click", resetPage);
 

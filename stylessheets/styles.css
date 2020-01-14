@@ -49,7 +49,8 @@ a:hover {
 .contents-container {
     flex-grow: 1;
     min-height: 100%;
-​
+
+
 }
 ​
 ​
@@ -64,8 +65,6 @@ a:hover {
     padding: 50px 0px 0px 0px;
     background-color: rgb(203, 237, 208);  
 }
-​
-​
 .card, .js-card {
     /* centers as a child of card-z */
     display: inline-block !important;
@@ -75,8 +74,6 @@ a:hover {
     background-color: rgb(203, 237, 208) !important;
     border: 0px !important;
 }
-​
-​
 .card-img-top, .js-card-img-top {
     display: inline-block;
     width: 250px;
@@ -205,17 +202,17 @@ a:hover {
     background: rgba(33,224,163,1);
     color: blueviolet;
 }
-​
+
 @media screen and (max-width: 414px) {
-​
+
     html, body, footer {
         font-size: 12px;
     }
-​
+
     .navbar-brand {
         font-size: 24px;
     }
-​
+
     .logo {
         display: block;
         /* vertical-align: middle; */
@@ -231,7 +228,6 @@ a:hover {
     .logo > img {
         width: 100%;
     }
-​
     
     .zipcode-button {
         flex-direction: column;
@@ -242,15 +238,15 @@ a:hover {
         margin: 0 auto;
         width: 5em;
     }
-​
+
     .js-reset-btn {
         margin-top: 10px;
     }
-​
+
     .card-z {
         margin-bottom: 100px;
     }
-​
+
 }
   
 @media screen and (min-width: 769px) {
@@ -261,15 +257,12 @@ a:hover {
         justify-content: space-evenly;
         width: 100%;
         margin-bottom: 100px;
-​
     }
 ​
     .card-title, .js-card-title {
         width: 100%;
         padding: 20px 50px 20px 50px;
     }
-​
-​
 }
 ​
 ​
@@ -278,6 +271,4 @@ a:hover {
         width: 900px;
         margin-bottom: 100px;
     }
-​
-​
 }

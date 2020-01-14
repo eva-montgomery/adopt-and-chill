@@ -39,7 +39,7 @@ function formBuilder(){
     input2.type = "submit";
 
     let reset = document.createElement("button");
-    reset.className = "js-reset-btn";
+    reset.className = "js-reset-btn reset-btn";
     reset.textContent = "Reset";
     reset.addEventListener("click", resetPage);
 
@@ -137,7 +137,7 @@ function createSingleStrainDOM(infoArr){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your Bud!";
+    h5.textContent = "Your new Strain!";
 
     let img = document.createElement("img");
     img.src = "images/noun_Marijuana_2183514.png";
@@ -296,7 +296,7 @@ function buildDogDOM(dogCard){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your Best Bud!";
+    h5.textContent = "Your new Best Friend!";
 
     let img = document.createElement("img");
     if(!dogCard.photos[0]){ //if petfinder API doesn't have any photos for dog, use default

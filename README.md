@@ -43,7 +43,9 @@ First, we create some clickable elements to populate the landing page. Once the 
 
 #### SCREEN OUTPUT 
 
-[!](https://www.youtube.com/watch?v=I0PX4Sw4m1M&feature=youtu.be)
+
+[![](https://user-images.githubusercontent.com/56937602/71106492-77aaa980-218d-11ea-85b6-451fa8a653bc.png)](https://www.youtube.com/watch?v=I0PX4Sw4m1M&feature=youtu.be)
+
 
 ### APIs USED 
 * Petfinder API - https://www.petfinder.com/developers/api-docs

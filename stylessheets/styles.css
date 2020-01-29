@@ -2,6 +2,11 @@
     box-sizing: border-box; 
 }
 
+@font-face { 
+    font-family: 'Toren Rotalic'; 
+    src: url(Toren-Rotalic.otf);
+}
+
 html, body {
     /* display:flex the body so that contents-container can flex-grow */
     display: flex;
@@ -13,7 +18,8 @@ html, body {
     min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgb(203, 237, 208);
+    background-color: #bcd381;
+    /* background-color: rgb(203, 237, 208); */
     background-blend-mode: screen;
 }
 
@@ -25,8 +31,9 @@ footer {
     display: flex;
     font-size: 14px;
     padding: 20px 0px 30px 0px;
-    background-color:rgb(9, 52, 33);
-    color: rgb(251, 239, 91);
+    background-color: #888d2a;
+    color: #dbdbdb;
+    /* color: rgb(251, 239, 91); */
 }
 
 /* unvisited link */
@@ -37,12 +44,12 @@ a:link {
 
 /* visited link */
 a:visited {
-    color: rgb(251,249, 91);
+    color: #888d2a;
   }
 
 /* mouse over link */
 a:hover {
-    color: rgb(231, 188, 255);;
+    color: rgb(231, 188, 255);
     text-decoration: none;
   }
 
@@ -62,7 +69,8 @@ a:hover {
     margin: 0 auto;
     width: 300px;
     padding: 50px 0px 0px 0px;
-    background-color: rgb(203, 237, 208);  
+    background-color: #bcd381;
+    /* background-color: rgb(203, 237, 208);   */
 }
 
 
@@ -72,7 +80,8 @@ a:hover {
     width: 300px;
     margin-top: 20px;
     margin-bottom: 20px !important;
-    background-color: rgb(203, 237, 208) !important;
+    background-color: #bcd381!important; 
+    /* background-color: rgb(203, 237, 208) !important; */
     border: 0px !important;
 }
 
@@ -95,17 +104,19 @@ a:hover {
     padding: 10px 0;
     align-items: center;
     text-align: center !important;
-    background-color:rgb(9, 52, 33);
+    /* background-color:rgb(9, 52, 33); */
 }
 
 .navbar-brand {
+    /* font-family: 'Toren Rotalic'; */
     font-family: 'Yatra One', cursive;
     font-style: normal;
     display: inline-block !important;
     margin: 0 auto;
     vertical-align: middle;
-    color: rgb(251, 239, 91);
-    font-size: 32px;
+    color: #888d2a;
+    /* color: rgb(251, 239, 91); */
+    font-size: 48px;
     display: inline-block !important;
 } 
 
@@ -147,14 +158,17 @@ a:hover {
  .zipcode-button  {
     display: flex;
     padding: 10px 0;
-    justify-content: space-between;
-    background-color:  rgb(203, 237, 208);
+    justify-content: center; 
+    /* justify-content: space-between; */
+    background-color: #bcd381;
+    /* background-color:  rgb(203, 237, 208); */
  
 }
 
 .js-form-container {
     display: flex;
-    background-color: rgb(203, 237, 208);
+    background-color: #bcd381;
+    /* background-color: rgb(203, 237, 208); */
     justify-content: center;
 }
 
@@ -164,21 +178,23 @@ a:hover {
     margin-bottom: 5px;
     margin-left: 30px;
     border-radius: 25px;
+    background-color: #dbdbdb;
 }
 
 .js-search-btn {
     border-radius: 25px;
     display: flex;
-    color: blueviolet; 
+    color: black;
+    /* color: blueviolet;  */
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
-    background: rgba(33,224,163,1);
+    background-color: #888d2a;
+    /* background: rgba(33,224,163,1); */
 }
 
 .js-search-btn:hover {
-    color: hotpink;
-    background: rgb(30, 205, 151);
+    color: #dbdbdb;
 }
 
 .js-reset-btn {
@@ -188,20 +204,21 @@ a:hover {
     margin-bottom: 5px;
     margin-right: 30px;
     border-radius: 25px;
-    color: blueviolet; 
-    background: rgba(33,224,163,1);
+    color: black;
+    background-color: #888d2a;
+    /* color: blueviolet;  */
+    /* background: rgba(33,224,163,1); */
 }
 
 .js-reset-btn:hover {
-    color: hotpink;
-    background: rgb(30, 205, 151);
+    color: #dbdbdb;
 }
 
 .search-btn, .js-zip-button {
     padding: 5px;
     justify-content: center;
     border-radius: 25px;
-    border: 2px solid rgba(33,224,163,1);
+    border: 2px solid #888d2a;
     background: rgba(33,224,163,1);
     color: blueviolet;
 }
@@ -213,7 +230,7 @@ a:hover {
     }
 
     .navbar-brand {
-        font-size: 24px;
+        font-size: 48px;
     }
 
     .logo {

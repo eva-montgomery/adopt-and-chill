@@ -242,7 +242,7 @@ function createSingleStrainDOM(infoArr){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your new Strain!";
+    h5.textContent = "Your new Bud!";
 
     let img = document.createElement("img");
     img.src = "images/noun_Marijuana_2183514.png";
@@ -408,7 +408,7 @@ function buildDogDOM(dogCard){
     
     let h5 = document.createElement("h5");
     h5.className = "js-card-title";
-    h5.textContent = "Your new Best Friend!";
+    h5.textContent = "Your new Best Bud!";
 
     let img = document.createElement("img");
     if(!dogCard.photos[0]){ //if petfinder API doesn't have any photos for dog, use default
@@ -417,7 +417,7 @@ function buildDogDOM(dogCard){
         img.src = dogCard.photos[0].full;
     }
     img.className = "js-card-img-top";
-    img.alt = "your new best friend!";
+    img.alt = "your new best bud!";
 
     let p1 = document.createElement('p');
     p1.className = "js-card-text";
@@ -435,7 +435,7 @@ function buildDogDOM(dogCard){
     a.className = "js-adopt-button";
     a.href = dogCard.url;
     a.target = "_blank";
-    a.textContent = `adopt me!!`;
+    a.textContent = `Adopt Me`;
     
     card.appendChild(h5);
     card.appendChild(img);
